@@ -41,6 +41,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionCreerSoiree();
                 $html .= $act->execute();
                 break;
+            case "create-spectacle":
+                $act = new \nrv\Actions\ActionCreerSpectacle();
+                $html .= $act->execute();
+                break;
 //            case "display-spectacle":
 //                $act = new \nrv\Actions\ActionAfficherSpectacle();
 //                $html .= $act->execute();
