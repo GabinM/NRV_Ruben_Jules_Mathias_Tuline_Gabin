@@ -1,7 +1,7 @@
 <?php
 
 
-namespace nrv\Dispatcher;
+namespace nrv;
 
 class Dispatcher{
     private ?string $action;
@@ -15,15 +15,31 @@ class Dispatcher{
     }
 
     public function run(){
+        $html = '<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Spautify</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        <body>';
         switch($this->action){
             case "display-soiree":
-                $act = new \nrv\Action\ActionAfficherSoiree();
+                $act = new \nrv\Actions\ActionAfficherSoiree();
+                $html .= $act->execute();
                 break;
-            case "display-spectacle":
-                $act = new \nrv\Action\ActionAfficherSpectacle();
+//            case "display-spectacle":
+//                $act = new \nrv\Actions\ActionAfficherSpectacle();
+//                $html .= $act->execute();
+//                break;
+            default:
+                $html .= '<a>Erreur sur la requête</a>';
                 break;
         }
-        $this->renderHTML($act->execute());
+        $html .= '</body>
+        </html>';
+        $this->renderHTML($html);
     }
 
 
