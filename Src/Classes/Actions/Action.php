@@ -1,6 +1,6 @@
 <?php
 
-namespace nrv\Action;
+namespace nrv\Actions;
 
 abstract class Action {
 

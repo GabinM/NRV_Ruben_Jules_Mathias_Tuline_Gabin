@@ -36,7 +36,7 @@ class   NRVRepository
     }
 
     public function findSoiree(int $id){ //retourne un tableau de données
-        $query = $bd->prepare("select * from soiree where idSoiree = ? ;");
+        $query = $this->bd->prepare("select * from soiree where idSoiree = ? ;");
         $query->bindParam(1,$id);
         $query->execute();
 
@@ -44,7 +44,7 @@ class   NRVRepository
     }
 
     public function findSpectacleBySoiree(int $id) { //retourne un tableau de tableaux de données
-        $query = $bd->prepare("select * from spectacle inner join spectacle2soiree on spectacle.idSpectacle = spectacle.idSpectacle inner join soiree on soiree.idSoiree = spectacle2Soiree.idSoiree where idSoiree = ? ;");
+        $query = $this->bd->prepare("select * from spectacle inner join spectacle2soiree on spectacle.idSpectacle = spectacle2soiree.idSpectacle inner join soiree on soiree.idSoiree = spectacle2Soiree.idSoiree where soiree.idSoiree = ? ;");
         $query->bindParam(1,$id);
         $query->execute();
 
