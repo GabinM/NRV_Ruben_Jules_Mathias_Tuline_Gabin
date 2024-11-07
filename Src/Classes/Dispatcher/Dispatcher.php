@@ -1,7 +1,7 @@
 <?php
 
 
-namespace nrv;
+namespace nrv\Dispatcher;
 
 class Dispatcher{
     private ?string $action;
