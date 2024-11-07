@@ -2,6 +2,8 @@
 
 namespace nrv\Auth;
 
+use PDO;
+
 class Authz {
 
     public static function checkRole() {//retourne 0, 1 ou 2 en fonction des droits
