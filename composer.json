@@ -1,0 +1,14 @@
+{
+    "name": "s3/nrv",
+    "description": "le rock a son paroxysme",
+    "type": "project",
+    "autoload": {
+    "psr-4": {
+    "NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\conf\\" : "./conf",
+    "NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\" : "./src/classes"
+    }
+    },
+  "require": {
+    "ext-pdo": "*"
+  }
+}
