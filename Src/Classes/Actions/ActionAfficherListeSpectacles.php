@@ -13,7 +13,7 @@ class ActionAfficherListeSpectacles extends Action {
             return "<a>Aucun spectacle n'a été trouvé</a>";
         }
         for ($i=0; $i<sizeof($arr); $i++) {
-            $html .= "<a>Le spectacle {$arr['Titre']} de {$arr['NomArtistes']} de style {$arr['Style']} aura lieu le {$arr['Date']} à {$arr['nomLieu']}.</a></br>";
+            $html .= "<a>Le spectacle {$arr['Titre']} par {$arr['NomArtistes']} de style {$arr['Style']} aura lieu le {$arr['Date']} à {$arr['nomLieu']}.</a></br>";
             $html .= "<a>Il commencera à {$arr['Horaire']} durera {$arr['Durée']}min</a></br>";
             $html .= "<a>Description du spectacle : {$arr['DescriptionSpec']}</a></br></br>";
         }
