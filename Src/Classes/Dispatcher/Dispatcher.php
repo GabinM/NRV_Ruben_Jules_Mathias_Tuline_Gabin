@@ -25,8 +25,16 @@ class Dispatcher{
         </head>
         <body>';
         switch($this->action){
+            case "default":
+                $act = new \nrv\Actions\ActionDefault();
+                $html .= $act->execute();
+                break;
             case "display-soiree":
                 $act = new \nrv\Actions\ActionAfficherSoiree();
+                $html .= $act->execute();
+                break;
+            case "create-soiree":
+                $act = new \nrv\Actions\ActionCreerSoiree();
                 $html .= $act->execute();
                 break;
 //            case "display-spectacle":
