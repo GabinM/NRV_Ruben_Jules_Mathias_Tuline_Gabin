@@ -33,6 +33,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionAfficherSoiree();
                 $html .= $act->execute();
                 break;
+            case "display-all-soiree":
+                $act = new \nrv\Actions\ActionAfficherListeSoirees();
+                $html .= $act->execute();
+                break;
             case "create-soiree":
                 $act = new \nrv\Actions\ActionCreerSoiree();
                 $html .= $act->execute();
