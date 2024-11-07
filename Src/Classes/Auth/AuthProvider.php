@@ -5,7 +5,7 @@ namespace nrv\Auth;
 class AuthProvider{
     
     public static function signin($addr, $mdp){
-        $conn = \spautify\repository\SpautifyRepository::getInstance()->getDb();
+        $conn = \nrv\Repository\NRVRepository::getInstance()->getDb();
 
         $query = $conn->prepare("select hashmdp from utilisateur where email = ? ;");
         $query->bindParam(1,$addr);
@@ -14,7 +14,7 @@ class AuthProvider{
         $pwd = $query->fetch(PDO::FETCH_ASSOC)["hashmdp"];
 
         if (! password_verify($mdp,$pwd)){
-            throw new \spautify\exception\AuthnException("identifiant ou mot de passe invalide");
+            throw new \nrv\Exception\AuthzException("identifiant ou mot de passe invalide");
         }
     }
 
