@@ -12,4 +12,7 @@ if(isset($_REQUEST['action'])){
     $d = new \nrv\Dispatcher\Dispatcher("default");
 }
 
+//lier le fichier de configuration à notre DeefyRepository
+\nrv\Repository\NRVRepository::setConfig('conf.ini');
+
 $d->run();

@@ -77,5 +77,12 @@ class   NRVRepository
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findListSoiree() {
+        $query = $this->bd->prepare("select * from soiree;");
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }
