@@ -1,8 +1,13 @@
 <?php
 
 namespace nrv\Actions;
+use nrv\Exceptions\AuthzException;
 
 class ActionSeConnecter extends Action{
+    /**
+     * @throws AuthzException
+     * @throws \Exception
+     */
     public function execute() :string {
         $bool = \nrv\auth\Authz::checkRole();
         $html = "";
@@ -22,10 +27,10 @@ class ActionSeConnecter extends Action{
                 $_SESSION['user'] = serialize(array($_POST['email'], $_POST['mdp']));
                 unset($_SESSION['playlist']);
                 $html .= "<a>Connexion réussie, bonjour {$_POST['email']} !</a></br>";
-            } catch (Exception $e){
+            } catch (AuthzException $e){
                 $html .= "<a>email ou mot de passe incorrect</a>";
                 $html .= "</br></br><a class='adminc{$bool}' id='choice' href='?action=sign-in'>Réessayer</a>";
-            } catch (AuthzException $e2) {
+            } catch (\Exception $e2) {
                 $html .= "<a>email ou mot de passe incorrect</a>";
                 $html .= "</br></br><a class='adminc{$bool}' id='choice' href='?action=sign-in'>Réessayer</a>";
             }

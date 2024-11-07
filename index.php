@@ -4,7 +4,9 @@ require_once 'vendor\autoload.php';
 
 if(! isset($_SESSION)){
     session_start();
+    $_SESSION['user']['email'] = "";
 }
+
 
 //user -> {hash, {soirees}}
 //hash: hash du mot de passe pour vérifier les droits d'accès

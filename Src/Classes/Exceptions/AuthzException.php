@@ -1,3 +1,5 @@
 <?php
-namespace spautify\exception;
+
+namespace nrv\Exceptions;
+
 class AuthzException extends  \Exception{}
