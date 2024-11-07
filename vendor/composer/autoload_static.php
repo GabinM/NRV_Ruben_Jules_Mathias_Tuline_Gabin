@@ -7,21 +7,21 @@ namespace Composer\Autoload;
 class ComposerStaticInit57ff263d814464f9a51cd0e0850c38db
 {
     public static $prefixLengthsPsr4 = array (
-        'N' => 
+        'n' => 
         array (
-            'NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\conf\\' => 42,
-            'NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\' => 37,
+            'nrv\\conf\\' => 9,
+            'nrv\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\conf\\' => 
+        'nrv\\conf\\' => 
         array (
             0 => __DIR__ . '/../..' . '/conf',
         ),
-        'NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\' => 
+        'nrv\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/classes',
+            0 => __DIR__ . '/../..' . '/Src/Classes',
         ),
     );
 

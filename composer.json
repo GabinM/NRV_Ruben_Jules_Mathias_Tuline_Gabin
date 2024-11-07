@@ -4,8 +4,8 @@
     "type": "project",
     "autoload": {
     "psr-4": {
-    "NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\conf\\" : "./conf",
-    "NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\" : "./src/classes"
+    "nrv\\conf\\" : "./conf",
+    "nrv\\" : "./Src/Classes"
     }
     },
   "require": {

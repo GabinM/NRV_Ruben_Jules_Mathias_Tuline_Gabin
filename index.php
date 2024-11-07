@@ -1,15 +1,15 @@
 <?php
 
-require 'vendor\autoload.php';
+require_once 'vendor\autoload.php';
 
 if(! isset($_SESSION)){
     session_start();
 }
 
 if(isset($_REQUEST['action'])){
-    $d = new \spautify\Dispatcher($_REQUEST['action']);
+    $d = new \nrv\Dispatcher\Dispatcher($_REQUEST['action']);
 } else {
-    $d = new \spautify\Dispatcher("default");
+    $d = new \nrv\Dispatcher\Dispatcher("default");
 }
 
 $d->run();

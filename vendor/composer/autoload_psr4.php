@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\conf\\' => array($baseDir . '/conf'),
-    'NRV_RUBEN_JULES_MATHIAS_TULINE_GABIN\\' => array($baseDir . '/src/classes'),
+    'nrv\\conf\\' => array($baseDir . '/conf'),
+    'nrv\\' => array($baseDir . '/Src/Classes'),
 );
