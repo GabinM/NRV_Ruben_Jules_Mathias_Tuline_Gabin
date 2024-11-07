@@ -1,6 +1,6 @@
 <?php
 
-namespace NRV\Auth;
+namespace nrv\Auth;
 
 class AuthProvider{
     

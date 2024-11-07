@@ -1,6 +1,6 @@
 <?php
 
-namespace NRV\Repository;
+namespace nrv\Repository;
 
 use PDO;
 
@@ -33,6 +33,14 @@ class NRVRepository
 
     public function getDb(){
         return $this->bd;
+    }
+
+    public function getSoiree(int $id){
+        $query = $bd->prepare("select * from soiree where idSoiree = ? ;");
+        $query->bindParam(1,$id);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
 }

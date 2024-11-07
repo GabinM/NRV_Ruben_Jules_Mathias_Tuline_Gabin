@@ -1,6 +1,6 @@
 <?php
 
-namespace NRV\Render;
+namespace nrv\Render;
 
 interface Renderer{
 
