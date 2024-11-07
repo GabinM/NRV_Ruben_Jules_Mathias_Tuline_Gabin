@@ -50,4 +50,16 @@ class NRVRepository
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function createSoiree(string $nom, string $theme, string $date, string $description, float $tarif): bool {
+        $sql = "INSERT INTO Soiree (nom, theme, date, description, tarif) VALUES (:nom, :theme, :date, :description, :tarif)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':theme', $theme);
+        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':tarif', $tarif);
+        return $stmt->execute();
+    }
+
 }
