@@ -4,7 +4,7 @@ require_once 'vendor\autoload.php';
 
 if(! isset($_SESSION)){
     session_start();
-    $_SESSION['user']['email'] = "";
+    $_SESSION['user']['email'] = serialize("emilie.riviere@mail.com"); //truc temporaire pour avoir les droits admin
 }
 
 
