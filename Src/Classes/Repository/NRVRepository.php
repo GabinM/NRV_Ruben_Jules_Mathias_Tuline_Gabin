@@ -7,7 +7,7 @@ use PDO;
 class NRVRepository
 {
 
-    private static SpautifyRepository $sp;
+    private static NRVRepository $rep;
     private static string $CONF;
     private static array $PARAMS;
     private PDO $bd;
@@ -25,10 +25,10 @@ class NRVRepository
     }
 
     public static function getInstance(){
-        if(! isset($sp)){
-            $sp = new SpautifyRepository();
+        if(! isset($rep)){
+            $rep = new NRVRepository();
         }
-        return $sp;
+        return $rep;
     }
 
     public function getDb(){
