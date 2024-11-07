@@ -3,6 +3,8 @@
 namespace nrv\Actions;
 
 
+use nrv\Repository\NRVRepository;
+
 class ActionCreerSoiree extends Action {
     public function execute(): string {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
