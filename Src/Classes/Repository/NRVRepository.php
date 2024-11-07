@@ -4,7 +4,7 @@ namespace nrv\Repository;
 
 use PDO;
 
-class NRVRepository
+class   NRVRepository
 {
 
     private static NRVRepository $rep;
@@ -61,5 +61,22 @@ class NRVRepository
         $stmt->bindParam(':tarif', $tarif);
         return $stmt->execute();
     }
+
+    public function findSpectacle(int $id) {
+        $query = $bd->prepare("select * from spectacle where idSpectacle = ? ;");
+        $query->bindParam(1,$id);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findSoireeBySpectacle(int $id) {
+        $query = $bd->prepare("select * from soiree inner join spectacle2soiree on soiree.idSoiree = spectacle2soiree.idSoiree where idSpectacle = ? ;");
+        $query->bindParam(1,$id);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }
