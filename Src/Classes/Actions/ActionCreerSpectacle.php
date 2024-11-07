@@ -42,7 +42,7 @@ class ActionCreerSpectacle extends Action {
                         <label>Description :
                         <textarea name="description" placeholder="Description du spectacle" rows="4" cols="50" required></textarea>
                         </label><br><br>
-
+                    <button type="submit">Créer la soirée</button>
                     </form>
             HTML;
         }else {
