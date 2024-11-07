@@ -2,10 +2,10 @@
 
 require_once 'vendor\autoload.php';
 
+session_start();
 
-if(!isset($_SESSION)){
-    session_start();
-    $_SESSION['user']['email'] = serialize(""); //truc temporaire pour avoir les droits admin
+if(!isset($_SESSION['user'])){
+    $_SESSION['user']['email'] = ""; //truc temporaire pour avoir les droits admin
 }
 
 
