@@ -13,5 +13,3 @@ if(isset($_REQUEST['action'])){
 }
 
 $d->run();
-
-echo "<p>NRV</p>";
