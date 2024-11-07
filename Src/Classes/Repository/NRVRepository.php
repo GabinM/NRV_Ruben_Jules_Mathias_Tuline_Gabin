@@ -52,18 +52,17 @@ class   NRVRepository
     }
 
     public function createSoiree(string $nom, string $theme, string $date, string $description, float $tarif): bool {
-        $sql = "INSERT INTO Soiree (nom, theme, date, description, tarif) VALUES (:nom, :theme, :date, :description, :tarif)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':theme', $theme);
-        $stmt->bindParam(':date', $date);
-        $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':tarif', $tarif);
-        return $stmt->execute();
+        $query = $this->bd->prepare("INSERT INTO Soiree (NomSoiree, theme, date, descriptionSoiree, tarif) VALUES (:nom, :theme, :date, :description, :tarif)");
+        $query->bindParam(':nom', $nom);
+        $query->bindParam(':theme', $theme);
+        $query->bindParam(':date', $date);
+        $query->bindParam(':description', $description);
+        $query->bindParam(':tarif', $tarif);
+        return $query->execute();
     }
 
     public function findSpectacle(int $id) {
-        $query = $bd->prepare("select * from spectacle where idSpectacle = ? ;");
+        $query = $this->bd->prepare("select * from spectacle where idSpectacle = ? ;");
         $query->bindParam(1,$id);
         $query->execute();
 
@@ -71,7 +70,7 @@ class   NRVRepository
     }
 
     public function findSoireeBySpectacle(int $id) {
-        $query = $bd->prepare("select * from soiree inner join spectacle2soiree on soiree.idSoiree = spectacle2soiree.idSoiree where idSpectacle = ? ;");
+        $query = $this->bd->prepare("select * from soiree inner join spectacle2soiree on soiree.idSoiree = spectacle2soiree.idSoiree where idSpectacle = ? ;");
         $query->bindParam(1,$id);
         $query->execute();
 
