@@ -18,6 +18,7 @@ class ActionAfficherListeSoirees extends Action {
             $html .= "<a>Description de la soirée : {$arr['DescriptionSoiree']}</a></br></br>";
         }
 
+        $html .= "<a href='?action=default'> Retourner au menu </a></br></br></br>";
         return $html;
 
     }

@@ -20,7 +20,7 @@ class Dispatcher{
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Spautify</title>
+            <title>NRV</title>
             <link rel="stylesheet" href="style.css">
         </head>
         <body>';
@@ -45,6 +45,10 @@ class Dispatcher{
 //                $act = new \nrv\Actions\ActionAfficherSpectacle();
 //                $html .= $act->execute();
 //                break;
+            case "display-all-spec":
+                $act = new \nrv\Actions\ActionAfficherListeSpectacles();
+                $html .= $act->execute();
+                break;
             default:
                 $html .= '<a>Erreur sur la requête</a>';
                 break;

@@ -84,5 +84,12 @@ class   NRVRepository
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findListSpec() {
+        $query = $this->bd->prepare("select * from spectacle;");
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }
