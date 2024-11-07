@@ -53,6 +53,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionAfficherListeSpectacles();
                 $html .= $act->execute();
                 break;
+            case "sign-in":
+                $act = new \nrv\Actions\ActionSeConnecter();
+                $html .= $act->execute();
+                break;
             case "register-user":
                 $act = new \nrv\Actions\ActionEnregistrerUtilisateur();
                 $html .= $act->execute();

@@ -19,7 +19,6 @@ class ActionSeConnecter extends Action{
             $html .="<label for='mdp'>Mot de passe :</label></br>";
             $html .= "<input type='text' id='mdp' name='mdp'></br></br>";
             $html .= "<button type = 'submit'>se connecter</button></form></br>";
-            $html .= "<a href='?action=add-user'>Pas encore de compte ? Créez en un maintenant !</a></br>";
             $html .= "</br></br><a href='?action=default'> Retourner au menu </a>";
         } else {
             try{
