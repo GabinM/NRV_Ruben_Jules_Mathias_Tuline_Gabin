@@ -13,9 +13,9 @@ class ActionAfficherListeSoirees extends Action {
             return "<a>Aucune soirée n'a été trouvée</a>";
         }
         for ($i=0; $i<sizeof($arr); $i++) {
-            $html .= "<a>La soirée {$arr[$i]['NomSoiree']} a pour thème {$arr[$i]['Theme']} et aura lieu le {$arr[$i]['Date']}.</a></br>";
-            $html .= "<a>Le prix d'une place est de {$arr[$i]['Tarif']}€ par personne.</a></br>";
-            $html .= "<a>Description de la soirée : {$arr[$i]['DescriptionSoiree']}</a></br></br>";
+            $html .= "<a>La soirée {$arr[$i]['nomSoiree']} a pour thème {$arr[$i]['theme']} et aura lieu le {$arr[$i]['date']}.</a></br>";
+            $html .= "<a>Le prix d'une place est de {$arr[$i]['tarif']}€ par personne.</a></br>";
+            $html .= "<a>Description de la soirée : {$arr[$i]['descriptionSoiree']}</a></br></br>";
         }
 
         $html .= "<a href='?action=default'> Retourner au menu </a></br></br></br>";
