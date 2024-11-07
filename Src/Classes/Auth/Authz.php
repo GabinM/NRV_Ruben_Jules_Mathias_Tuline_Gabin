@@ -12,10 +12,16 @@ class Authz {
         } else {
             $bd = \spautify\repository\SpautifyRepository::getInstance()->getDb();
 
-            $rlQuery = $bd->prepare("select role from user where hashmdp = ? ;");
+            $rlQuery = $bd->prepare("select role from utilisateur where hashmdp = ? ;");
             $rlQuery->bindparam(1,$hash);
             $rlQuery->execute();
-            $bdRl = $rlQuery->fetch(PDO::FETCH_ASSOC)['role'];
+
+            try{
+                $bdRl = $rlQuery->fetch(PDO::FETCH_ASSOC)['role'];
+            } catch (Exception $e){
+                throw new AuthzException("Erreur d'authentification");
+            }
+
 
             return $bdRl; // 1 : organisateur, 2 : admin
 
