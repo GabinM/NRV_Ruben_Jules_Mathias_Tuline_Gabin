@@ -12,6 +12,7 @@ class ActionAfficherListeSoirees extends Action
         $dateFilter = isset($_GET['date']) ? $_GET['date'] : '';
 
 
+
         $html .= "
 <form method='GET' action='index.php'> 
     <input type='hidden' name='action' value='display-all-soiree' /> 
@@ -20,6 +21,7 @@ class ActionAfficherListeSoirees extends Action
     <input type='submit' value='Filtrer'>
 </form><br><br>
 ";
+
 
 
         $bd = \nrv\Repository\NRVRepository::getInstance();
