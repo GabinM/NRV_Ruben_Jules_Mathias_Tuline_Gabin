@@ -79,7 +79,7 @@ class ActionAfficherListeSpectacles extends Action
             foreach ($arr as $spectacle) {
                 $idStyle = $spectacle['idStyle'] ?? 'Inconnu';
                 $libelle = $bd->findStyleById($idStyle)['libelle'] ?? 'Inconnu';
-                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br>";
+                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br></br>";
 
                 $medias = $bd->findMediaBySpec($spectacle['idSpectacle']);
                 foreach ($medias as $media) {
@@ -94,11 +94,11 @@ class ActionAfficherListeSpectacles extends Action
                             foreach ($medias as $media) {
                                 $Ext = new \SplFileInfo($media['fichier']);
                                 if ($Ext->getExtension() == 'jpg') {
-                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br></br>";
                                 } else {
                                     $html .= "<video height=350px autoplay muted loop>
                     <source src='" . htmlspecialchars($media['fichier']) . "' type='video/mp4'>
-                  </video><br>";
+                  </video><br></br>";
                                 }
                             }
 
@@ -108,7 +108,7 @@ class ActionAfficherListeSpectacles extends Action
             }
 
         }
-        $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
+        $html .= "</br><a href='?action=default'> Retourner au menu </a><br><br><br>";
         return $html;
     }
 }

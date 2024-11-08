@@ -31,7 +31,33 @@ class ActionAfficherSpectacle extends Action {
                 $html .= "<a><strong>Thème :</strong> {$soirnee['theme']}</a><br>";
                 $html .= "<a><strong>Date de la soirée :</strong> {$soirnee['date']}</a><br>";
                 $html .= "<a><strong>Tarif :</strong> {$soirnee['tarif']}€</a><br>";
-                $html .= "<a><strong>Description de la soirée :</strong> {$soirnee['descriptionSoiree']}</a><br>";
+                $html .= "<a><strong>Description de la soirée :</strong> {$soirnee['descriptionSoiree']}</a><br></br>";
+
+
+                $medias = $bd->findMediaBySpec($_REQUEST['id_spectacle']);
+                foreach ($medias as $media) {
+                    $Ext = new \SplFileInfo($media['fichier']);
+
+                    if (!empty($medias)) {
+                        if ($Ext == 'jpg') {
+                            foreach ($medias as $media) {
+                                $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                            }
+                        } else {
+                            foreach ($medias as $media) {
+                                $Ext = new \SplFileInfo($media['fichier']);
+                                if ($Ext->getExtension() == 'jpg') {
+                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br></br>";
+                                } else {
+                                    $html .= "<video height=350px autoplay muted loop>
+                    <source src='" . htmlspecialchars($media['fichier']) . "' type='video/mp4'>
+                  </video><br></br>";
+                                }
+                            }
+
+                        }
+                    }
+                }
             } else {
                 // Si le spectacle n'est pas associé à une soirée
                 $html .= "<a>Ce spectacle n'est associé à aucune soirée.</a><br>";
