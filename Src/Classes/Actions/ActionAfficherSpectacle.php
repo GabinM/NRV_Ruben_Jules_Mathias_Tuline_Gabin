@@ -15,11 +15,11 @@ class ActionAfficherSpectacle extends Action {
             }
             $html .= "<a><strong>Titre :</strong> {$arr['titre']}</a><br>";
             $html .= "<a><strong>Lieu :</strong> {$arr['nomLieu']}</a><br>";
-            $html .= "<a><strong>Artistes :</strong> {$arr['nomArtiste']}</a><br>";
+            $html .= "<a><strong>Artistes :</strong> {$arr['nomsArtistes']}</a><br>";
             $html .= "<a><strong>Style :</strong> {$arr['style']}</a><br>";
             $html .= "<a><strong>Date :</strong> {$arr['date']}</a><br>";
             $html .= "<a><strong>Duree :</strong> {$arr['duree']} minutes</a><br>";
-            $html .= "<a><strong>Description :</strong> {$arr['description']}</a><br>";
+            $html .= "<a><strong>Description :</strong> {$arr['descriptionSpec']}</a><br>";
             $html .= "<a><strong>Horaire :</strong> {$arr['horaire']}</a><br>";
 
             // Vérifier si le spectacle est associé à une soirée

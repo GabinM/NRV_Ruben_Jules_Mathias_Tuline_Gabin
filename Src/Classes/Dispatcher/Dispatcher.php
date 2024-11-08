@@ -54,10 +54,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionCreerSpectacle();
                 $html .= $act->execute();
                 break;
-//            case "display-spectacle":
-//                $act = new \nrv\Actions\ActionAfficherSpectacle();
-//                $html .= $act->execute();
-//                break;
+            case "display-spectacle":
+                $act = new \nrv\Actions\ActionAfficherSpectacle();
+                $html .= $act->execute();
+                break;
             case "display-all-spec":
                 $act = new \nrv\Actions\ActionAfficherListeSpectacles();
                 $html .= $act->execute();

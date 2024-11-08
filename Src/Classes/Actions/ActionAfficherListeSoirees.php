@@ -48,7 +48,8 @@ class ActionAfficherListeSoirees extends Action
                 foreach ($arr as $soiree) {
                     $html .= "<a>La soirée {$soiree['nomSoiree']} a pour thème {$soiree['theme']} et aura lieu le {$soiree['date']}.</a><br>";
                     $html .= "<a>Le prix d'une place est de {$soiree['tarif']}€ par personne.</a><br>";
-                    $html .= "<a>Description de la soirée : {$soiree['descriptionSoiree']}</a><br><br>";
+                    $html .= "<a>Description de la soirée : {$soiree['descriptionSoiree']}</a><br>";
+                    $html .= "<a href='?action=display-soiree&soiree_id={$soiree['idSoiree']}'> Afficher une soirée </a></br></br>";
                 }
             }
         }
