@@ -24,6 +24,7 @@ class ActionAfficherSoiree extends Action {
             $soirray = $bd->findSpectacleBySoiree($_REQUEST['soiree_id']);
             foreach($soirray as $s){
                 $html .= "<a href='?action=display-spectacle&id_spectacle={$s['idSpectacle']}'>{$s['titre']} par {$s['nomsArtistes']}</a></br>";
+                //$s['idSpectacle']
             }
         }
 

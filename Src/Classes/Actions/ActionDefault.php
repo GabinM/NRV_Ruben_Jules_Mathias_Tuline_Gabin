@@ -2,11 +2,15 @@
 
 namespace nrv\Actions;
 
+use nrv\Exceptions\AuthzException;
+
 class ActionDefault extends Action {
+    /**
+     * @throws AuthzException
+     */
     public function execute() : string {
         $role = \nrv\auth\Authz::checkRole();
-        $html = "<a href='?action=display-soiree'> Afficher une soirée </a></br></br></br>";
-        $html .= "<a href='?action=display-all-soiree'> Afficher toutes les soirées </a></br></br></br>";
+        $html = "<a href='?action=display-all-soiree'> Afficher toutes les soirées </a></br></br></br>";
         $html .= "<a href='?action=display-all-spec'> Afficher tous les spectacles </a></br></br></br>";
         $html .= "<a href='?action=sign-in'> Se connecter </a></br></br></br>";
 
