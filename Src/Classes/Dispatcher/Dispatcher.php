@@ -70,7 +70,7 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionEnregistrerUtilisateur();
                 $html .= $act->execute();
                 break;
-            case " link-spectacle-soiree":
+            case "link-spectacle-soiree":
                 $act = new \nrv\Actions\ActionLinkSpectacleToSoiree();
                 $html .= $act->execute();
                 break;
