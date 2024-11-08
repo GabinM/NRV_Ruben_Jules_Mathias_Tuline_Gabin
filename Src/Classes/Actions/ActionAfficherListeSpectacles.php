@@ -77,8 +77,7 @@ class ActionAfficherListeSpectacles extends Action
             foreach ($arr as $spectacle) {
                 $idStyle = $spectacle['idStyle'] ?? 'Inconnu';
                 $libelle = $bd->findStyleById($idStyle)['libelle'] ?? 'Inconnu';
-                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br>";
-                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>{$spectacle['titre']} par {$spectacle['nomsArtistes']}</a><br><br>";
+                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br>";
 
                 $medias = $bd->findMediaBySpec($spectacle['idSpectacle']);
                 if (!empty($medias)) {
