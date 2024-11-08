@@ -41,7 +41,7 @@ class ActionCreerSpectacle extends Action {
                     </label><br><br>
 
                     <label>Style du spectacle :
-                        <select name="style" required>
+                        <select name="idstyle" required>
                             $optionsS
                         </select>
                     </label><br><br>
@@ -75,15 +75,15 @@ class ActionCreerSpectacle extends Action {
             $idLieu = filter_var($_POST['idLieu'], FILTER_SANITIZE_NUMBER_INT);
             $titre = filter_var($_POST['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
             $artiste = filter_var($_POST['artiste'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $style = filter_var($_POST['style'], FILTER_SANITIZE_NUMBER_INT);
+            $idstyle = filter_var($_POST['idstyle'], FILTER_SANITIZE_NUMBER_INT);
             $date = filter_var($_POST['date'], FILTER_SANITIZE_SPECIAL_CHARS);
             $horaire = filter_var($_POST['horraire'], FILTER_SANITIZE_NUMBER_INT);
             $duree = filter_var($_POST['duree'], FILTER_SANITIZE_NUMBER_INT);
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($idLieu && $titre && $artiste && $style && $date && $horaire && $duree && $description !== false) {
+            if ($idLieu && $titre && $artiste && $idstyle && $date && $horaire && $duree && $description !== false) {
                 $bd = NRVRepository::getInstance();
-                $result = $bd->createSpectacle($idLieu, $titre, $style, $date, $horaire, $duree, $description, $artiste);
+                $result = $bd->createSpectacle($idLieu, $titre, $idstyle, $date, $horaire, $duree, $description, $artiste);
 
                 if ($result) {
                     $html = "Le Spectacle <b>$titre</b> a été créé avec succès au lieu $idLieu";
