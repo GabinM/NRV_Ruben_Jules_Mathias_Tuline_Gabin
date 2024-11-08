@@ -28,6 +28,8 @@ class ActionAfficherSoiree extends Action {
             }
         }
 
+        $html .= "</br><a href='?action=default'>Retourner au menu</a><br><br><br>";
+
         return $html;
 
     }

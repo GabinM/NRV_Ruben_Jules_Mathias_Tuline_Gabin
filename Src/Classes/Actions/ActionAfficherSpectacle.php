@@ -26,7 +26,7 @@ class ActionAfficherSpectacle extends Action {
             $soirnee = $bd->findSoireeBySpectacle($_REQUEST['id_spectacle']);
             if ($soirnee) {
                 // Afficher les informations de la soirée si associée
-                $html .= "<a><strong>Ce spectacle fait partie de la soirée : </strong><a href='?action=display-soiree&id_soiree={$soirnee['idSoiree']}'> {$soirnee['nomSoiree']}</a></a><br>";
+                $html .= "<a><strong>Ce spectacle fait partie de la soirée : </strong><a href='?action=display-soiree&soiree_id={$soirnee['idSoiree']}'> {$soirnee['nomSoiree']}</a></a><br>";
 
                 $html .= "<a><strong>Thème :</strong> {$soirnee['theme']}</a><br>";
                 $html .= "<a><strong>Date de la soirée :</strong> {$soirnee['date']}</a><br>";
@@ -39,6 +39,8 @@ class ActionAfficherSpectacle extends Action {
         } else {
             $html = "<a>Aucun ID de spectacle spécifié.</a>";
         }
+
+        $html .= "</br><a href='?action=default'>Retourner au menu</a><br><br><br>";
 
         return $html;
     }
