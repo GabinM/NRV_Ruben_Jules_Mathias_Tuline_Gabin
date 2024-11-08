@@ -148,14 +148,14 @@ class   NRVRepository
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
     public function findListSpecByStyle($style) {
-        $query = $this->bd->prepare("SELECT * FROM spectacle WHERE style = :style");
+        $query = $this->bd->prepare("SELECT * FROM spectacle WHERE idStyle = :style");
         $query->bindParam(':style', $style);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function findListSpecByDateAndStyle($date, $style) {
-        $query = $this->bd->prepare("SELECT * FROM spectacle WHERE date = :date AND style = :style");
+        $query = $this->bd->prepare("SELECT * FROM spectacle WHERE date = :date AND idStyle = :style");
         $query->bindParam(':date', $date);
         $query->bindParam(':style', $style);
         $query->execute();
