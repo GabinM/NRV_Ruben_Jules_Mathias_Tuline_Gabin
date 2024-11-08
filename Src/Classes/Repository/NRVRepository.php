@@ -68,6 +68,20 @@ class   NRVRepository
         return $query->execute();
     }
 
+    public function createSpectacle(int $idLieu, string $titre, int $style, string $date, int $duree, string $description, string $horaire, string $artiste,  ): bool
+    {
+        $query = $this->bd->prepare("INSERT INTO spectacle (idLieu, titre, nomArtiste, style, date, horaire, duree, description) VALUES (:idLieu, :titre, :artiste, :style, :date, :horaire, :duree, :description)");
+        $query->bindParam(':idLieu', $idLieu);
+        $query->bindParam(':titre', $titre);
+        $query->bindParam(':artiste', $artiste);
+        $query->bindParam(':style', $style);
+        $query->bindParam(':date', $date);
+        $query->bindParam(':horaire', $horaire);
+        $query->bindParam(':duree', $duree);
+        $query->bindParam(':description', $description);
+        return $query->execute();
+    }
+
     public function findSpectacle(int $id)
     {
         $query = $this->bd->prepare("select * from spectacle where idSpectacle = ? ;");
@@ -111,7 +125,8 @@ class   NRVRepository
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findListSoireeByDate($date) {
+    public function findListSoireeByDate($date)
+    {
         $query = "SELECT * FROM soiree WHERE date = :date";
         $query = $this->bd->prepare($query);
         $query->bindParam(':date', $date);

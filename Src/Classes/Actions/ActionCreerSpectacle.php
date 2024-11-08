@@ -44,7 +44,7 @@ class ActionCreerSpectacle extends Action {
                         <label>Description :
                         <textarea name="description" placeholder="Description du spectacle" rows="4" cols="50" required></textarea>
                         </label><br><br>
-                    <button type="submit">Créer la soirée</button>
+                    <button type="submit">Créer le spectacle</button>
                     </form>
             HTML;
         }else {
@@ -59,7 +59,7 @@ class ActionCreerSpectacle extends Action {
 
             if ($nom && $titre && $artiste && $style && $date && $horraie && $duree && $description !== false) {
                 $bd = NRVRepository::getInstance();
-                $result = $bd->findSpectacle($nom, $titre, $artiste, $style, $date, $horraie, $duree, $description);
+                $result = $bd->createSpectacle($nom, $titre, $artiste, $style, $date, $horraie, $duree, $description);
 
                 if ($result) {
                     $html = "Le Spectacle <b>$nom</b> a été créée";
