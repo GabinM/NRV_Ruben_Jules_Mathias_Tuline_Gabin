@@ -70,7 +70,7 @@ class   NRVRepository
 
     public function createSpectacle(int $idLieu, string $titre, int $style, string $date, int $duree, string $description, string $horaire, string $artiste): bool
     {
-        $query = $this->bd->prepare("INSERT INTO spectacle (idSpectacle, idLieu, titre, nomArtiste, style, date, horaire, duree, description) VALUES (:idLieu, :titre, :artiste, :style, :date, :horaire, :duree, :description)");
+        $query = $this->bd->prepare("INSERT INTO spectacle (idLieu, titre, nomsArtistes, style, date, horaire, duree, descriptionSpec) VALUES (:idLieu, :titre, :artiste, :style, :date, :horaire, :duree, :description)");
         $query->bindParam(':idLieu', $idLieu);
         $query->bindParam(':titre', $titre);
         $query->bindParam(':artiste', $artiste);
