@@ -59,6 +59,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionSeConnecter();
                 $html .= $act->execute();
                 break;
+            case "log-out":
+                $act = new \nrv\Actions\ActionSeDeconnecter();
+                $html .= $act->execute();
+                break;
             case "register-user":
                 $act = new \nrv\Actions\ActionEnregistrerUtilisateur();
                 $html .= $act->execute();
