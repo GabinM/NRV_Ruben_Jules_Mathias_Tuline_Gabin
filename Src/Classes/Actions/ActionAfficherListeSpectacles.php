@@ -78,7 +78,7 @@ class ActionAfficherListeSpectacles extends Action
         } else {
             foreach ($arr as $spectacle) {
                 $idStyle = isset($spectacle['idStyle']) ? $spectacle['idStyle'] : 'Inconnu';
-                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$idStyle}.</a><br>";
+                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br>";
                 $html .= "<a>Il durera {$spectacle['duree']} min</a><br>";
                 $html .= "<a>Description du spectacle : {$spectacle['descriptionSpec']}</a><br><br>";
             }
