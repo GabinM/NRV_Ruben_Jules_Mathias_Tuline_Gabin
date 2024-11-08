@@ -32,7 +32,7 @@ class ActionAfficherListeSoirees extends Action
             $arr = $bd->findListSoireeByDate($dateFilter);
 
             if (sizeof($arr) < 1) {
-                $html .= "<a>Aucune soirée n'a été trouvée pour cette date.</a>";
+                $html .= "<a>Aucune soirée n'a été trouvée pour cette date.</a></br></br>";
             } else {
                 foreach ($arr as $soiree) {
                     $html .= "<a>La soirée {$soiree['nomSoiree']} a pour thème {$soiree['theme']} et aura lieu le {$soiree['date']}.</a><br>";

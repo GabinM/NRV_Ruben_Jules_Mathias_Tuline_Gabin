@@ -81,10 +81,9 @@ class ActionAfficherListeSpectacles extends Action
                 $libelle = $bd->findStyleById($idStyle);
                 $libelle = $libelle['libelle'];
                 $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br>";
-                $html .= "<a>Il durera {$spectacle['duree']} min</a><br>";
-                $html .= "<a>Description du spectacle : {$spectacle['descriptionSpec']}</a><br><br>";
+                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>{$spectacle['titre']} par {$spectacle['nomsArtistes']}</a></br><br>";
+                }
             }
-        }
 
         $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
 
