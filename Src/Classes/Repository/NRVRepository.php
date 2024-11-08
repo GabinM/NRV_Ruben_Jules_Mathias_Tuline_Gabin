@@ -185,5 +185,12 @@ class   NRVRepository
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findMediaBySpec($id) {
+        $query = $this->bd->prepare("SELECT fichier FROM media WHERE idSpectacle = :id");
+        $query->bindParam(':id',$id);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 }

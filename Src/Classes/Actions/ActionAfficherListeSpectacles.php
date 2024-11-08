@@ -7,11 +7,10 @@ class ActionAfficherListeSpectacles extends Action
     public function execute(): string
     {
         $html = "";
-        
-        $dateFilter = isset($_GET['date']) ? $_GET['date'] : '';
-        $styleFilter = isset($_GET['style']) ? $_GET['style'] : '';
-        $lieuFilter = isset($_GET['lieu']) ? $_GET['lieu'] : '';
 
+        $dateFilter = $_GET['date'] ?? '';
+        $styleFilter = $_GET['style'] ?? '';
+        $lieuFilter = $_GET['lieu'] ?? '';
 
         $bd = \nrv\Repository\NRVRepository::getInstance();
         $styles = $bd->getAllStyles();
@@ -20,7 +19,7 @@ class ActionAfficherListeSpectacles extends Action
 <form method='GET' action='index.php'>
     <input type='hidden' name='action' value='display-all-spec' />
     <label for='date'>Sélectionnez une date:</label>
-    <input type='date' id='date' name='date' value='$dateFilter'>
+    <input type='date' id='date' name='date' value='" . htmlspecialchars($dateFilter) . "'>
     <input type='submit' value='Filtrer'>
 </form><br><br>";
 
@@ -34,7 +33,7 @@ class ActionAfficherListeSpectacles extends Action
         foreach ($styles as $style) {
             $idStyle = htmlspecialchars($style['idStyle']);
             $libelle = htmlspecialchars($style['libelle']);
-            $selected = ($idStyle == $styleFilter) ? "selected" : "";
+            $selected = ($idStyle === $styleFilter) ? "selected" : "";
             $html .= "<option value='$idStyle' $selected>$libelle</option>";
         }
 
@@ -52,7 +51,7 @@ class ActionAfficherListeSpectacles extends Action
         foreach ($bd->getAllLieux() as $lieu) {
             $idLieu = htmlspecialchars($lieu['idLieu']);
             $nomLieu = htmlspecialchars($lieu['nomLieu']);
-            $selected = ($idLieu == $lieuFilter) ? "selected" : "";
+            $selected = ($idLieu === $lieuFilter) ? "selected" : "";
             $html .= "<option value='$idLieu' $selected>$nomLieu</option>";
         }
 
@@ -72,20 +71,25 @@ class ActionAfficherListeSpectacles extends Action
             $arr = $bd->findListSpec();
         }
 
-
-        if (sizeof($arr) < 1) {
+        if (empty($arr)) {
             $html .= "<a>Aucun spectacle n'a été trouvé</a>";
         } else {
             foreach ($arr as $spectacle) {
-                $idStyle = isset($spectacle['idStyle']) ? $spectacle['idStyle'] : 'Inconnu';
-                $libelle = $bd->findStyleById($idStyle);
-                $libelle = $libelle['libelle'];
+                $idStyle = $spectacle['idStyle'] ?? 'Inconnu';
+                $libelle = $bd->findStyleById($idStyle)['libelle'] ?? 'Inconnu';
                 $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br>";
-                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>{$spectacle['titre']} par {$spectacle['nomsArtistes']}</a></br><br>";
+                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>{$spectacle['titre']} par {$spectacle['nomsArtistes']}</a><br><br>";
+
+                $medias = $bd->findMediaBySpec($spectacle['idSpectacle']);
+                if (!empty($medias)) {
+                    foreach ($medias as $media) {
+                        $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                    }
                 }
             }
 
-        $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
+            $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
+        }
 
         return $html;
     }
