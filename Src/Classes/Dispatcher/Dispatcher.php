@@ -70,6 +70,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionEnregistrerUtilisateur();
                 $html .= $act->execute();
                 break;
+            case "link-spectacle-soiree":
+                $act = new \nrv\Actions\ActionLinkSpectacleToSoiree();
+                $html .= $act->execute();
+                break;
             default:
                 $html .= '<a>Erreur sur la requête</a>';
                 break;
