@@ -37,7 +37,7 @@ class ActionAfficherListeSpectacles extends Action
         } else {
             // Si des spectacles sont trouvés, les afficher
             foreach ($arr as $spectacle) {
-                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$spectacle['style']}.</a><br>";
+                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$spectacle['idStyle']}.</a><br>";
                 $html .= "<a>Il durera {$spectacle['duree']} min</a><br>";
                 $html .= "<a>Description du spectacle : {$spectacle['descriptionSpec']}</a><br><br>";
             }
