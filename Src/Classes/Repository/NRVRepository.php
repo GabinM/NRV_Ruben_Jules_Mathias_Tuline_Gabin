@@ -84,7 +84,7 @@ class   NRVRepository
 
     public function findSpectacle(int $id)
     {
-        $query = $this->bd->prepare("select spectacle.titre, spectacle.style, spectacle.date, spectacle.duree, spectacle.descriptionSpec, spectacle.horaire, spectacle.nomsArtistes, lieu.nomLieu, style.libelle from spectacle inner join lieu on spectacle.idLieu = lieu.idLieu inner join style on style.idStyle = spectacle.style  where idSpectacle = ?;");
+        $query = $this->bd->prepare("select spectacle.titre, spectacle.idStyle, spectacle.date, spectacle.duree, spectacle.descriptionSpec, spectacle.horaire, spectacle.nomsArtistes, lieu.nomLieu, style.libelle from spectacle inner join lieu on spectacle.idLieu = lieu.idLieu inner join style on style.idStyle = spectacle.idStyle  where idSpectacle = ?;");
         $query->bindParam(1, $id);
         $query->execute();
 
