@@ -169,5 +169,12 @@ class   NRVRepository
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function findStyleById($id) {
+        $query = $this->bd->prepare("SELECT libelle FROM style WHERE idStyle = :id");
+        $query->bindParam(':id',$id);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }
