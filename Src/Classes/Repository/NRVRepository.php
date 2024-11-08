@@ -68,9 +68,9 @@ class   NRVRepository
         return $query->execute();
     }
 
-    public function createSpectacle(int $idLieu, string $titre, int $style, string $date, int $duree, string $description, string $horaire, string $artiste,  ): bool
+    public function createSpectacle(int $idLieu, string $titre, int $style, string $date, int $duree, string $description, string $horaire, string $artiste): bool
     {
-        $query = $this->bd->prepare("INSERT INTO spectacle (idLieu, titre, nomArtiste, style, date, horaire, duree, description) VALUES (:idLieu, :titre, :artiste, :style, :date, :horaire, :duree, :description)");
+        $query = $this->bd->prepare("INSERT INTO spectacle (idSpectacle, idLieu, titre, nomArtiste, style, date, horaire, duree, description) VALUES (:idLieu, :titre, :artiste, :style, :date, :horaire, :duree, :description)");
         $query->bindParam(':idLieu', $idLieu);
         $query->bindParam(':titre', $titre);
         $query->bindParam(':artiste', $artiste);
@@ -132,6 +132,20 @@ class   NRVRepository
         $query->bindParam(':date', $date);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllLieux() {
+        $query = "SELECT idLieu, nomLieu FROM lieu";
+        $query = $this->bd->prepare($query);
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getAllStyles() {
+        $query = "SELECT idStyle, libelle FROM style";
+        $query = $this->bd->prepare($query);
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
 
