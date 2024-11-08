@@ -58,6 +58,8 @@ class ActionAfficherListeSpectacles extends Action
         $html .= "</select>
     <input type='submit' value='Filtrer'>
 </form><br><br>";
+        $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
+
 
         if ($dateFilter && $styleFilter && $lieuFilter) {
             $arr = $bd->findListSpecByDateAndStyle($dateFilter, $styleFilter, $lieuFilter);
@@ -81,16 +83,33 @@ class ActionAfficherListeSpectacles extends Action
                 $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>{$spectacle['titre']} par {$spectacle['nomsArtistes']}</a><br><br>";
 
                 $medias = $bd->findMediaBySpec($spectacle['idSpectacle']);
-                if (!empty($medias)) {
-                    foreach ($medias as $media) {
-                        $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                foreach ($medias as $media) {
+                    $Ext = new \SplFileInfo($media['fichier']);
+
+                    if (!empty($medias)) {
+                        if ($Ext == 'jpg') {
+                            foreach ($medias as $media) {
+                                $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                            }
+                        } else {
+                            foreach ($medias as $media) {
+                                $Ext = new \SplFileInfo($media['fichier']);
+                                if ($Ext->getExtension() == 'jpg') {
+                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                                } else {
+                                    $html .= "<video height=350px autoplay muted loop>
+                    <source src='" . htmlspecialchars($media['fichier']) . "' type='video/mp4'>
+                  </video><br>";
+                                }
+                            }
+
+                        }
                     }
                 }
             }
 
-            $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
         }
-
+        $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
         return $html;
     }
 }

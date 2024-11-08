@@ -21,7 +21,7 @@ class ActionAfficherSpectacle extends Action {
             $html .= "<a><strong>Duree :</strong> {$arr['duree']} minutes</a><br>";
             $html .= "<a><strong>Description :</strong> {$arr['descriptionSpec']}</a><br>";
             $html .= "<a><strong>Horaire :</strong> {$arr['horaire']}</a><br>";
-            
+
             // Vérifier si le spectacle est associé à une soirée
             $soirnee = $bd->findSoireeBySpectacle($_REQUEST['id_spectacle']);
             if ($soirnee) {
