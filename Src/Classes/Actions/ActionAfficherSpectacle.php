@@ -22,12 +22,14 @@ class ActionAfficherSpectacle extends Action {
             $html .= "<a><strong>Description :</strong> {$arr['descriptionSpec']}</a><br>";
             $html .= "<a><strong>Horaire :</strong> {$arr['horaire']}</a><br>";
 
-            $media = false;//$bd->findMediaBySpectacle($_REQUEST['id_spectacle']);
+            $media = $bd->findMediaBySpectacle($_REQUEST['id_spectacle']);
 
             if($media){
                 foreach($media as $m){
                     $ext = substr($m['media'], strpos($m['media'],"."));
-                    if(["png","jpg","jpeg"]->contains($ext));
+                    if($ext == "png"){
+                        $html .= "<img href='{$m['media']}'></img>" ;
+                    };
                 }
             }
 
