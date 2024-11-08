@@ -21,18 +21,7 @@ class ActionAfficherSpectacle extends Action {
             $html .= "<a><strong>Duree :</strong> {$arr['duree']} minutes</a><br>";
             $html .= "<a><strong>Description :</strong> {$arr['descriptionSpec']}</a><br>";
             $html .= "<a><strong>Horaire :</strong> {$arr['horaire']}</a><br>";
-
-            $media = $bd->findMediaBySpectacle($_REQUEST['id_spectacle']);
-
-            if($media){
-                foreach($media as $m){
-                    $ext = substr($m['media'], strpos($m['media'],"."));
-                    if($ext == "png"){
-                        $html .= "<img href='{$m['media']}'></img>" ;
-                    };
-                }
-            }
-
+            
             // Vérifier si le spectacle est associé à une soirée
             $soirnee = $bd->findSoireeBySpectacle($_REQUEST['id_spectacle']);
             if ($soirnee) {
