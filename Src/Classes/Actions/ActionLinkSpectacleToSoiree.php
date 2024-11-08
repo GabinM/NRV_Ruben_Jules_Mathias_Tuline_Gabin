@@ -20,7 +20,7 @@ class ActionLinkSpectacleToSoiree extends Action {
             $html .= "<input type='text' name='soiree_name'></br></br>";
             $html .="<label >Nom du spectacle</label></br>";
             $html .= "<input type='text' name='spectacle_name'></br></br>";
-            $html .= "<input type='submit' value = 'Rechercher' name='seek'>";
+            $html .= "<input type='submit' value = 'Rechercher' name='seek'></form></br>";
 
             if($this->http_method == "POST"){
 
@@ -69,14 +69,14 @@ class ActionLinkSpectacleToSoiree extends Action {
                     $res = $checkQuery->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
                     if($res > 0){
-                        $html .= "<a>Le spectacle est déjà relié à la soirée</a>";
+                        $html .= "<a>Le spectacle est déjà relié à la soirée</a></br>";
                     } else {
                         $query = $bd->prepare("insert into spectacle2soiree(idSpectacle,idSoiree) values (?,?) ;");
                         $query->bindParam(1, $_POST['spec']);
                         $query->bindParam(2, $_POST['soir']);
                         try{
                             $query->execute();
-                            $html .= "<a>Spectacle relié à la soirée avec succès</a>";
+                            $html .= "<a>Spectacle relié à la soirée avec succès</a></br>";
                         } catch(\Exception $e) {
                             $html .= "<a>Erreur</a>";
                             $html .= $e->getMessage();
@@ -86,6 +86,7 @@ class ActionLinkSpectacleToSoiree extends Action {
                 }
             }
         }
+        $html .= "<a href='?action=default'>Retourner au menu</a>";
         return $html;
     }
 
