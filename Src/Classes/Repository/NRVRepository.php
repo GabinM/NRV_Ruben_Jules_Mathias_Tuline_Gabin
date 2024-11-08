@@ -100,6 +100,15 @@ class   NRVRepository
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findMediaBySpectacle(int $id)
+    {
+        $query = $this->bd->prepare("select * from media inner join spectacle on spectacle.idSpectacle =  media.idSpectacle where spectacle.idSpectacle = ? ;");
+        $query->bindParam(1, $id);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function findListSoiree()
     {
         $query = $this->bd->prepare("select * from soiree;");
