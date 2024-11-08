@@ -2,6 +2,8 @@
 
 namespace nrv\Actions;
 
+use nrv\Repository\NRVRepository;
+
 class ActionCreerSpectacle extends Action {
 
     function execute() : String {
@@ -57,7 +59,7 @@ class ActionCreerSpectacle extends Action {
 
             if ($nom && $titre && $artiste && $style && $date && $horraie && $duree && $description !== false) {
                 $bd = NRVRepository::getInstance();
-                $result = $bd->createSpectacle($nom, $titre, $artiste, $style, $date, $horraie, $duree, $description);
+                $result = $bd->findSpectacle($nom, $titre, $artiste, $style, $date, $horraie, $duree, $description);
 
                 if ($result) {
                     $html = "Le Spectacle <b>$nom</b> a été créée";
