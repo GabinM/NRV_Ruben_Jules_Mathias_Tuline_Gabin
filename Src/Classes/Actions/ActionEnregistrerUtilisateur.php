@@ -2,6 +2,7 @@
 
 namespace nrv\Actions;
 
+use nrv\Exceptions\AuthzException;
 use nrv\Repository\NRVRepository;
 
 use PDO;
@@ -9,14 +10,15 @@ use PDO;
 class ActionEnregistrerUtilisateur extends Action {
 //d'abord faire les fonctions pour s'authentifier et vérifier le rôle
 
+    /**
+     * @throws AuthzException
+     */
     public function execute() : string {
         
         if(! \nrv\Auth\Authz::checkRole() == 2){
             return new \nrv\Exceptions\AuthzException("Vous n'êtes pas autorisé à enregistrer un nouvel utilisateur");
         } else {
-            $html = "";
-            
-            $html .= "<form method='POST' action='?action=register-user'>";
+            $html = "<form method='POST' action='?action=register-user'>";
             $html .="<label >Adresse mail :</label></br>";
             $html .= "<input type='text' name='mail'></br></br>";
             $html .="<label >Mot de passe :</label></br>";

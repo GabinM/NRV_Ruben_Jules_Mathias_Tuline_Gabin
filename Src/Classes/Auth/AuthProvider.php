@@ -21,12 +21,14 @@ class AuthProvider{
         $query2 = $conn->prepare("select count(*) from utilisateur where email = ? ;");
         $query2->bindParam(1,$addr);
         $query2->execute();
+        $query3 = ($query2->fetch(PDO::FETCH_ASSOC)["count(*)"]);
 
-        if ($query2->fetch(PDO::FETCH_ASSOC)["count(*)"] == 0){
+        if ($query3 === 0){
             throw new AuthzException("identifiant ou mot de passe invalide");
         }
 
         $pwd = $query->fetch(PDO::FETCH_ASSOC)["hashmdp"];
+
 
         if (!password_verify($mdp,$pwd)){
             throw new AuthzException("identifiant ou mot de passe invalide");

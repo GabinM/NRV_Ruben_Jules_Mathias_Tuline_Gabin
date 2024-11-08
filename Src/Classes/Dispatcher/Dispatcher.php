@@ -24,6 +24,15 @@ class Dispatcher{
             <link rel="stylesheet" href="style.css">
         </head>
         <body>';
+        $html.= "<h1 id = 'title'>NRV</h1>";
+
+        $user = $_SESSION['user']['email'];
+        if ($user == "") {
+            $html .= "<b>Connecté en tant qu'invité</b></br></br>";
+        } else {
+            $html .= "<b>Connecté en tant que {$user}</b></br></br>";
+        }
+
         switch($this->action){
             case "default":
                 $act = new \nrv\Actions\ActionDefault();
