@@ -7,15 +7,14 @@ class ActionAfficherListeSpectacles extends Action
     public function execute(): string
     {
         $html = "";
-
-        // Vérification si un filtre de date est appliqué
+        
         $dateFilter = isset($_GET['date']) ? $_GET['date'] : '';
         $styleFilter = isset($_GET['style']) ? $_GET['style'] : '';
         $lieuFilter = isset($_GET['lieu']) ? $_GET['lieu'] : '';
 
+
         $bd = \nrv\Repository\NRVRepository::getInstance();
         $styles = $bd->getAllStyles();
-
 
         $html .= "
 <form method='GET' action='index.php'>
@@ -44,12 +43,22 @@ class ActionAfficherListeSpectacles extends Action
 </form><br><br>";
 
         $html .= "
-        <form method='GET' action='index.php'>
-            <input type='hidden' name='action' value='display-all-spec' />
-            <label for='date'>Sélectionnez un Lieu:</label>
-            <select id='lieu' name='lieu'>
-                <option value=''>Tous les lieux</option>";
+<form method='GET' action='index.php'>
+    <input type='hidden' name='action' value='display-all-spec' />
+    <label for='lieu'>Sélectionnez un Lieu:</label>
+    <select id='lieu' name='lieu'>
+        <option value=''>Tous les lieux</option>";
 
+        foreach ($bd->getAllLieux() as $lieu) {
+            $idLieu = htmlspecialchars($lieu['idLieu']);
+            $nomLieu = htmlspecialchars($lieu['nomLieu']);
+            $selected = ($idLieu == $lieuFilter) ? "selected" : "";
+            $html .= "<option value='$idLieu' $selected>$nomLieu</option>";
+        }
+
+        $html .= "</select>
+    <input type='submit' value='Filtrer'>
+</form><br><br>";
 
         if ($dateFilter && $styleFilter && $lieuFilter) {
             $arr = $bd->findListSpecByDateAndStyle($dateFilter, $styleFilter, $lieuFilter);
@@ -68,7 +77,8 @@ class ActionAfficherListeSpectacles extends Action
             $html .= "<a>Aucun spectacle n'a été trouvé</a>";
         } else {
             foreach ($arr as $spectacle) {
-                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$spectacle['idStyle']}.</a><br>";
+                $idStyle = isset($spectacle['idStyle']) ? $spectacle['idStyle'] : 'Inconnu';
+                $html .= "<a>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$idStyle}.</a><br>";
                 $html .= "<a>Il durera {$spectacle['duree']} min</a><br>";
                 $html .= "<a>Description du spectacle : {$spectacle['descriptionSpec']}</a><br><br>";
             }
