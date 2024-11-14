@@ -71,6 +71,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionLinkSpectacleToSoiree();
                 $html .= $act->execute();
                 break;
+            case "modify-spectacle":
+                $act = new \nrv\Actions\ActionModifierSpectacle();
+                $html .= $act->execute();
+                break;
             default:
                 $html .= '<a>Erreur sur la requête</a>';
                 break;
