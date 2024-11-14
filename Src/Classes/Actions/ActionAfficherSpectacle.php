@@ -73,9 +73,9 @@ class ActionAfficherSpectacle extends Action {
             $html .= "</br><a href='?action=modify-spectacle'>Modifier</a><br><br>";
             $idS = $_REQUEST['id_spectacle'];
             if ($arr['annule'] == 0){
-                $html .= "</br><a href='?action=cancel-spectacle&id_spectacle=$idS'>Annuler Le spectacle</a><br><br><br>";
+                $html .= "</br><a href='?action=cancel-spectacle&id_spectacle=$idS'>Annuler le spectacle</a><br><br><br>";
             } else {
-                $html .= "</br><a href='?action=cancel-spectacle&id_spectacle=$idS'>Rétablir Le spectacle</a><br><br><br>";
+                $html .= "</br><a href='?action=cancel-spectacle&id_spectacle=$idS'>Rétablir le spectacle</a><br><br><br>";
             }
             
         }
