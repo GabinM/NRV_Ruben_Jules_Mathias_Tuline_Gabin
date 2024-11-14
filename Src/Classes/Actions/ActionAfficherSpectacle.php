@@ -13,6 +13,9 @@ class ActionAfficherSpectacle extends Action {
             if(sizeof($arr) < 1){
                 return "<a>Aucun spectacle trouvé</a>";
             }
+            if($arr['annule'] == 1){
+                $html .= "<a>Ce spectacle a été annulé</a></br>";
+            }
             $html .= "<a><strong>Titre :</strong> {$arr['titre']}</a><br>";
             //$html .= "<a><strong>Lieu :</strong> {$arr['nomLieu']}</a><br>";
             $html .= "<a><strong>Artistes :</strong> {$arr['nomsArtistes']}</a><br>";
@@ -66,7 +69,12 @@ class ActionAfficherSpectacle extends Action {
             $html = "<a>Aucun ID de spectacle spécifié.</a>";
         }
 
-        $html .= "</br><a href='?action=modify-spectacle'>Modifier</a><br><br><br>";
+        if(\nrv\Auth\Authz::checkRole() >= 1){
+            $html .= "</br><a href='?action=modify-spectacle'>Modifier</a><br><br>";
+            $idS = $_REQUEST['id_spectacle'];
+            $html .= "</br><a href='?action=cancel-spectacle&id_spectacle=$idS'>Annuler</a><br><br><br>";
+        }
+        
         $html .= "</br><a href='?action=default'>Retourner au menu</a><br><br><br>";
 
 
