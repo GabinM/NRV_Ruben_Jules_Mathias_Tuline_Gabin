@@ -75,6 +75,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionModifierSpectacle();
                 $html .= $act->execute();
                 break;
+            case "cancel-spectacle":
+                $act = new \nrv\Actions\ActionAnnulerSpectacle();
+                $html .= $act->execute();
+                break;
             default:
                 $html .= '<a>Erreur sur la requête</a>';
                 break;
