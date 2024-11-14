@@ -14,13 +14,13 @@ class ActionAfficherSpectacle extends Action {
                 return "<a>Aucun spectacle trouvé</a>";
             }
             $html .= "<a><strong>Titre :</strong> {$arr['titre']}</a><br>";
-            $html .= "<a><strong>Lieu :</strong> {$arr['nomLieu']}</a><br>";
+            //$html .= "<a><strong>Lieu :</strong> {$arr['nomLieu']}</a><br>";
             $html .= "<a><strong>Artistes :</strong> {$arr['nomsArtistes']}</a><br>";
             $html .= "<a><strong>Style :</strong> {$arr['libelle']}</a><br>";
-            $html .= "<a><strong>Date :</strong> {$arr['date']}</a><br>";
+            //$html .= "<a><strong>Date :</strong> {$arr['date']}</a><br>";
             $html .= "<a><strong>Duree :</strong> {$arr['duree']} minutes</a><br>";
             $html .= "<a><strong>Description :</strong> {$arr['descriptionSpec']}</a><br>";
-            $html .= "<a><strong>Horaire :</strong> {$arr['horaire']}</a><br>";
+            //$html .= "<a><strong>Horaire :</strong> {$arr['horaire']}</a><br>";
 
             // Vérifier si le spectacle est associé à une soirée
             $soirnee = $bd->findSoireeBySpectacle($_REQUEST['id_spectacle']);
@@ -28,10 +28,10 @@ class ActionAfficherSpectacle extends Action {
                 // Afficher les informations de la soirée si associée
                 $html .= "<a><strong>Ce spectacle fait partie de la soirée : </strong><a href='?action=display-soiree&soiree_id={$soirnee['idSoiree']}'> {$soirnee['nomSoiree']}</a></a><br>";
 
-                $html .= "<a><strong>Thème :</strong> {$soirnee['theme']}</a><br>";
-                $html .= "<a><strong>Date de la soirée :</strong> {$soirnee['date']}</a><br>";
-                $html .= "<a><strong>Tarif :</strong> {$soirnee['tarif']}€</a><br>";
-                $html .= "<a><strong>Description de la soirée :</strong> {$soirnee['descriptionSoiree']}</a><br></br>";
+                $html .= "<a><strong>Thème :</strong> {$soirnee['theme']}</a></br>";
+                $html .= "<a><strong>Date de la soirée :</strong> {$soirnee['date']}</a></br>";
+                $html .= "<a><strong>Tarif :</strong> {$soirnee['tarif']}€</a></br></br>";
+                //$html .= "<a><strong>Description de la soirée :</strong> {$soirnee['descriptionSoiree']}</a><br></br>";
 
 
                 $medias = $bd->findMediaBySpec($_REQUEST['id_spectacle']);
