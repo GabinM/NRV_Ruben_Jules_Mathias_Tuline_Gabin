@@ -16,49 +16,48 @@ class ActionAfficherListeSpectacles extends Action
         $styles = $bd->getAllStyles();
 
         $html .= "
-<form method='GET' action='index.php'>
-    <input type='hidden' name='action' value='display-all-spec' />
-    <label for='date'>Sélectionnez une date:</label>
-    <input type='date' id='date' name='date' value='" . htmlspecialchars($dateFilter) . "'>
-    <input type='submit' value='Filtrer'>
-</form><br><br>";
+<div style='display: flex;'>
+    <div style='flex: 1; max-width: 300px;'>
+        <form method='GET' action='index.php'>
+            <input type='hidden' name='action' value='display-all-spec' />
+            <label for='date'>Sélectionnez une date:</label>
+            <input type='date' id='date' name='date' value='" . htmlspecialchars($dateFilter) . "'>
+            <input type='submit' value='Filtrer'>
+        </form><br><br>
 
-        $html .= "
-<form method='GET' action='index.php'>
-    <input type='hidden' name='action' value='display-all-spec' />
-    <label for='style'>Sélectionnez un style:</label>
-    <select id='style' name='style'>
-        <option value=''>Tous les styles</option>";
-
+        <form method='GET' action='index.php'>
+            <input type='hidden' name='action' value='display-all-spec' />
+            <label for='style'>Sélectionnez un style:</label>
+            <select id='style' name='style'>
+                <option value=''>Tous les styles</option>";
         foreach ($styles as $style) {
             $idStyle = htmlspecialchars($style['idStyle']);
             $libelle = htmlspecialchars($style['libelle']);
             $selected = ($idStyle === $styleFilter) ? "selected" : "";
             $html .= "<option value='$idStyle' $selected>$libelle</option>";
         }
+        $html .= "    </select>
+            <input type='submit' value='Filtrer'>
+        </form><br><br>
 
-        $html .= "</select>
-    <input type='submit' value='Filtrer'>
-</form><br><br>";
-
-        $html .= "
-<form method='GET' action='index.php'>
-    <input type='hidden' name='action' value='display-all-spec' />
-    <label for='lieu'>Sélectionnez un Lieu:</label>
-    <select id='lieu' name='lieu'>
-        <option value=''>Tous les lieux</option>";
-
+        <form method='GET' action='index.php'>
+            <input type='hidden' name='action' value='display-all-spec' />
+            <label for='lieu'>Sélectionnez un Lieu:</label>
+            <select id='lieu' name='lieu'>
+                <option value=''>Tous les lieux</option>";
         foreach ($bd->getAllLieux() as $lieu) {
             $idLieu = htmlspecialchars($lieu['idLieu']);
             $nomLieu = htmlspecialchars($lieu['nomLieu']);
             $selected = ($idLieu === $lieuFilter) ? "selected" : "";
             $html .= "<option value='$idLieu' $selected>$nomLieu</option>";
         }
-
-        $html .= "</select>
-    <input type='submit' value='Filtrer'>
-</form><br><br>";
-        $html .= "<a href='?action=default'> Retourner au menu </a><br><br><br>";
+        $html .= "    </select>
+            <input type='submit' value='Filtrer'>
+        </form><br><br>
+    </div>
+    <div style='flex: 3;'>
+";
+        $html .= "</div></div></br><a href='?action=default'> Retourner au menu </a><br><br><br>";
 
 
         if ($dateFilter && $styleFilter && $lieuFilter) {

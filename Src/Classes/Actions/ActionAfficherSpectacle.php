@@ -66,7 +66,9 @@ class ActionAfficherSpectacle extends Action {
             $html = "<a>Aucun ID de spectacle spécifié.</a>";
         }
 
+        $html .= "</br><a href='?action=modify-spectacle'>Modifier</a><br><br><br>";
         $html .= "</br><a href='?action=default'>Retourner au menu</a><br><br><br>";
+
 
         return $html;
     }
