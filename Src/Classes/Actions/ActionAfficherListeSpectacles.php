@@ -61,7 +61,7 @@ class ActionAfficherListeSpectacles extends Action
 
 
         if ($dateFilter && $styleFilter && $lieuFilter) {
-            $arr = $bd->findListSpecByDateAndStyle($dateFilter, $styleFilter, $lieuFilter);
+            $arr = $bd->findListSpecByDateAndStyle($dateFilter, $styleFilter);
         } elseif ($dateFilter) {
             $arr = $bd->findListSpecByDate($dateFilter);
         } elseif ($styleFilter) {
