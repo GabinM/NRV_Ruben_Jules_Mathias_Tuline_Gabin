@@ -5,6 +5,14 @@ html {
     height:100%;
 }
 
+h1{
+    margin:0;
+    position:absolute;
+    left:50%;
+    top:20%;
+    color:white;
+}
+
 body{
     margin:0;
     width:100%;
@@ -18,6 +26,7 @@ body{
     width:100%;
     height:10%;
     background-image: url("./Media/site/menu_bar.png");
+    text-decoration: none;
 }
 
 #connid{
@@ -26,8 +35,16 @@ body{
     height:auto;
     border : 5% 5% 5% 5% solid white;
     background-color: rgb(255, 241, 162);
-    bottom:13%;
+    bottom:53%;
     left:1%;
+}
+
+#specSoireeList{
+    position:absolute;
+    top:50%;
+    left:30%;
+    width:10%;
+    height:40%;
 }
 
 #signin{
@@ -36,6 +53,7 @@ body{
     height:auto;
     border : 5% 5% 5% 5% solid white;
     background-color: rgb(255, 241, 162);
-    bottom:3%;
+    bottom:5%;
     left:1%;
+    text-decoration: none;
 }

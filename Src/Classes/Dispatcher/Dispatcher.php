@@ -41,7 +41,25 @@ class Dispatcher{
             $html .= "<a id='signin' href='?action=log-out'> Se déconnecter </a>";
         }
 
-        $html .= "</div>";
+        $html .= "<select id='specSoireeList' onchange ='location = this.value'>";
+        $html .= '<option value="" selected disabled hidden>Découvrez le festival</option>';
+        $html .= " <option value='?action=display-all-soiree'> Afficher toutes les soirées </option>";
+        $html .= " <option value='?action=display-all-spec'> Afficher tous les spectacles </option>";
+        $html .= "</select>";
+
+        $role = \nrv\auth\Authz::checkRole();
+        if ($role>0) {
+            $html.= "<select id = adminList> onchange ='location = this.value' ";
+            $html .= "<option href='?action=link-spectacle-soiree'> Lier un spectacle à une soirée </option>";
+            $html .= "<option href='?action=create-spectacle'> Créer un spectacle </option>";
+            $html .= "<option href='?action=create-soiree'> Créer une soirée </option>";
+            if ($role == 2){
+                $html .= "<option href='?action=register-user'> Enregistrer un nouvel utilisateur </option>";
+            }
+            $html.= "</select>";
+        }
+
+        $html .= "</div><div id='content'";
         
         switch($this->action){
             case "default":
@@ -100,7 +118,7 @@ class Dispatcher{
                 $html .= '<a>Erreur sur la requête</a>';
                 break;
         }
-        $html .= '</body>
+        $html .= '</div></body>
         </html>';
         $this->renderHTML($html);
     }
