@@ -77,9 +77,9 @@ class ActionAfficherListeSpectacles extends Action
             $html .= "<a>Aucun spectacle n'a été trouvé</a>";
         } else {
             foreach ($arr as $spectacle) {
-                $idStyle = $spectacle['idStyle'] ?? 'Inconnu';
-                $libelle = $bd->findStyleById($idStyle)['libelle'] ?? 'Inconnu';
-                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Le spectacle {$spectacle['titre']} de {$spectacle['nomsArtistes']} de style {$libelle}.</a><br></br>";
+                //$idStyle = $spectacle['idStyle'] ?? 'Inconnu';
+                //$libelle = $bd->findStyleById($idStyle)['libelle'] ?? 'Inconnu';
+                $html .= "<a>Le spectacle nommé {$spectacle['titre']} se déroulera le {$spectacle['date']} à {$spectacle['horaire']}.</a></br>";
 
                 $medias = $bd->findMediaBySpec($spectacle['idSpectacle']);
                 foreach ($medias as $media) {
@@ -88,23 +88,24 @@ class ActionAfficherListeSpectacles extends Action
                     if (!empty($medias)) {
                         if ($Ext == 'jpg') {
                             foreach ($medias as $media) {
-                                $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
+                                $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'></br>";
                             }
                         } else {
                             foreach ($medias as $media) {
                                 $Ext = new \SplFileInfo($media['fichier']);
                                 if ($Ext->getExtension() == 'jpg') {
-                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br></br>";
+                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'></br></br>";
                                 } else {
                                     $html .= "<video height=350px autoplay muted loop>
                     <source src='" . htmlspecialchars($media['fichier']) . "' type='video/mp4'>
-                  </video><br></br>";
+                  </video></br></br>";
                                 }
                             }
 
                         }
                     }
                 }
+                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Voir le détail du spectacle.</a></br></br>";
             }
 
         }
