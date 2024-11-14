@@ -22,6 +22,7 @@ class Dispatcher{
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>NRV</title>
             <link rel="stylesheet" href="style.css">
+            <link rel="icon" href="Media/icon.ico" type="image/ico">
         </head>
         <body>';
         $html.= "<h1 id = 'title'>NRV</h1>";
