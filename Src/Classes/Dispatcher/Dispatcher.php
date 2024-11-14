@@ -15,18 +15,34 @@ class Dispatcher{
     }
 
     public function run(){
-        $html = '<!DOCTYPE html>
+        $html = "";
+        $html .= '<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>NRV</title>
-            <link rel="stylesheet" href="style.css">
-            <link rel="icon" href="Media/icon.ico" type="image/ico">
+            <link rel="stylesheet" href="nrvStyle.css">
+            <link rel="icon" href="Media/site/icon.ico" type="image/ico">
         </head>
-        <body>';
+        <body><div id="menuBar">';
         $html.= "<h1 id = 'title'>NRV</h1>";
 
+        $user = $_SESSION['user']['email'];
+        if ($user == "") {
+            $html .= "<a id = 'connid' >Connecté en tant qu'invité</a>";
+        } else {
+            $html .= "<a id = 'connid' >Connecté en tant que {$user}</a>";
+        }
+        
+        if ($user == "") {
+            $html .= "<a id='signin' href='?action=sign-in'> Se connecter </a>";
+        } else {
+            $html .= "<a id='signin' href='?action=log-out'> Se déconnecter </a>";
+        }
+
+        $html .= "</div>";
+        
         switch($this->action){
             case "default":
                 $act = new \nrv\Actions\ActionDefault();
