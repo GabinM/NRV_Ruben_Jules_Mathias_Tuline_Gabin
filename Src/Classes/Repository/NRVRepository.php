@@ -194,7 +194,7 @@ class   NRVRepository
 
     public function updateSpectacle(int $id, int $idLieu, string $titre, int $style, string $date, int $duree, string $description, string $horaire, string $artiste, int $annule): bool
     {
-        $query = $this->bd->prepare("UPDATE spectacle SET idLieu = :idLieu, titre = :titre, nomsArtistes = :artiste, idStyle = :style, date = :date, horaire = :horaire, duree = :duree, descriptionSpec = :description WHERE idSpectacle = :id");
+        $query = $this->bd->prepare("UPDATE spectacle SET idLieu = :idLieu, titre = :titre, nomsArtistes = :artiste, idStyle = :style, date = :date, horaire = :horaire, duree = :duree, descriptionSpec = :description, annule = :annule WHERE idSpectacle = :id");
         $query->bindParam(':id', $id);
         $query->bindParam(':idLieu', $idLieu);
         $query->bindParam(':titre', $titre);

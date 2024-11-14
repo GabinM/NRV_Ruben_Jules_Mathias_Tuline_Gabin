@@ -63,8 +63,9 @@ class ActionAfficherSpectacle extends Action {
                 }
 
                 if(\nrv\Auth\Authz::checkRole() >= 1){
-                    $html .= "</br><a href='?action=modify-spectacle'>Modifier</a><br><br>";
                     $idS = $_REQUEST['id_spectacle'];
+                    $html .= "</br><a href='?action=modify-spectacle&id_spectacle=$idS'>Modifier</a><br><br>";
+
                     if ($arr['annule'] == 0){
                         $html .= "</br><a href='?action=cancel-spectacle&id_spectacle=$idS'>Annuler Le spectacle</a><br><br><br>";
                     } else {

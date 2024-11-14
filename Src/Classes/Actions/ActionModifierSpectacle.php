@@ -2,32 +2,55 @@
 
 namespace nrv\Actions;
 
+use nrv\Repository\NRVRepository;
+
 class ActionModifierSpectacle extends Action
 {
     public function execute(): string
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $bd = \nrv\Repository\NRVRepository::getInstance();
-            $lieux = $bd->getAllLieux();
-            $style = $bd->getAllStyles();
-            $optionsL = '';
-            $optionsS = '';
+        $bd = NRVRepository::getInstance();
+        $idSpectacle = $this->getIdSpectacle();
 
-            $options = '';
+        if (!$idSpectacle) {
+            return "<a>Erreur: idSpectacle manquant</a>";
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $spectacle = $bd->findSpectacle($idSpectacle);
+            if (!$spectacle) {
+                return "<a>Erreur: Spectacle introuvable</a>";
+            }
+
+            $lieux = $bd->getAllLieux();
+            $styles = $bd->getAllStyles();
+
+            $optionsL = '';
             foreach ($lieux as $lieu) {
-                $idLieu = htmlspecialchars($lieu['idLieu']);
-                $nomLieu = htmlspecialchars($lieu['nomLieu']);
-                $optionsL .= "<option value='$idLieu'>$nomLieu</option>";
+                $idLieu = isset($lieu['idLieu']) ? htmlspecialchars($lieu['idLieu']) : '';
+                $nomLieu = isset($lieu['nomLieu']) ? htmlspecialchars($lieu['nomLieu']) : '';
+                $selected = $spectacle['idLieu'] == $idLieu ? 'selected' : '';
+                $optionsL .= "<option value='$idLieu' $selected>$nomLieu</option>";
             }
-            foreach ($style as $s) {
-                $idStyle = htmlspecialchars($s['idStyle']);
-                $libelle = htmlspecialchars($s['libelle']);
-                $optionsS .= "<option value='$idStyle'>$libelle</option>";
+
+            $optionsS = '';
+            foreach ($styles as $style) {
+                $idStyle = htmlspecialchars($style['idStyle']);
+                $libelle = htmlspecialchars($style['libelle']);
+                $selected = $spectacle['idStyle'] == $idStyle ? 'selected' : '';
+                $optionsS .= "<option value='$idStyle' $selected>$libelle</option>";
             }
+
+            $titre = htmlspecialchars($spectacle['titre']);
+            $artiste = htmlspecialchars($spectacle['nomsArtistes']);
+            $date = htmlspecialchars($spectacle['date']);
+            $horaire = htmlspecialchars($spectacle['horaire']);
+            $duree = htmlspecialchars($spectacle['duree']);
+            $description = htmlspecialchars($spectacle['descriptionSpec']);
 
             $html = <<<HTML
-                <h2>Modification d'un spectacle</h2>
-                <form method="post" action="?action=update-spectacle">
+                <h2>Modification du spectacle</h2>
+                <form method="post" action="?action=modify-spectacle">
+                    <input type="hidden" name="id_spectacle" value="$idSpectacle">
                     <label>Nom du lieu où se produit le spectacle :
                         <select name="idLieu" required>
                             $optionsL
@@ -35,38 +58,71 @@ class ActionModifierSpectacle extends Action
                     </label><br><br>
 
                     <label>Titre du spectacle :
-                        <input type="text" name="titre" placeholder="Titre du spectacle" required>
+                        <input type="text" name="titre" value="$titre" required>
                     </label><br><br>
 
                     <label>Style du spectacle :
-                        <select name="idstyle" required>
+                        <select name="idStyle" required>
                             $optionsS
                         </select>
                     </label><br><br>
 
                     <label>Date du spectacle :
-                        <input type="date" name="date" required>
+                        <input type="date" name="date" value="$date" required>
                     </label><br><br>
 
                     <label>Durée du spectacle :
-                        <input type="number" name="duree" placeholder="Durée du spectacle" required>
+                        <input type="number" name="duree" value="$duree" required>
                     </label><br><br>
 
                     <label>Description :
-                        <textarea name="description" placeholder="Description du spectacle" rows="4" cols="50" required></textarea>
+                        <textarea name="description" rows="4" cols="50" required>$description</textarea>
                     </label><br><br>
                     
-                    <input type="submit" value="Modifier le spectacle">
-HTML;
+                    <label>Horaire du spectacle :
+                        <input type="time" name="horaire" value="$horaire" required>
+                    </label><br><br>
+
+                    <label>Nom de l'artiste :
+                        <input type="text" name="artiste" value="$artiste" required>
+                    </label><br><br>
+
+                    <button type="submit">Modifier le spectacle</button>
+                </form>
+            HTML;
 
         } else {
-            $bd = \nrv\Repository\NRVRepository::getInstance();
-            $bd->updateSpectacle($_POST['idSpectacle'], $_POST['idLieu'], $_POST['titre'], $_POST['idstyle'], $_POST['date'], $_POST['duree'], $_POST['description'], $_POST['annule']);
-            $html = "<a>Le spectacle a bien été modifié</a>";
+            $idLieu = filter_var($_POST['idLieu'], FILTER_SANITIZE_NUMBER_INT);
+            $titre = filter_var($_POST['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $artiste = filter_var($_POST['artiste'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $idStyle = filter_var($_POST['idStyle'], FILTER_SANITIZE_NUMBER_INT);
+            $date = filter_var($_POST['date'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $horaire = filter_var($_POST['horaire'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $duree = filter_var($_POST['duree'], FILTER_SANITIZE_NUMBER_INT);
+
+            $duree = is_numeric($duree) ? (int)$duree : 0;
+
+            $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+            if ($idLieu && $titre && $artiste && $idStyle && $date && $horaire && $duree !== false && $description !== false) {
+                $result = $bd->updateSpectacle($idSpectacle, $idLieu, $titre, $idStyle, $date, $duree, $description, $horaire, $artiste, 0);
+                if ($result) {
+                    $html = "Le Spectacle <b>$titre</b> a été modifié.";
+                } else {
+                    $html = "<p>Erreur lors de la modification du spectacle</p>";
+                }
+            } else {
+                $html = "<p>Erreur : un ou plusieurs champs sont invalides.</p>";
+            }
         }
 
-
+        $html .= "</br><a href='?action=default'>Retourner au menu</a>";
         return $html;
+    }
 
+    private function getIdSpectacle(): ?int
+    {
+        return isset($_GET['id_spectacle']) ? (int)$_GET['id_spectacle'] :
+            (isset($_POST['id_spectacle']) ? (int)$_POST['id_spectacle'] : null);
     }
 }
