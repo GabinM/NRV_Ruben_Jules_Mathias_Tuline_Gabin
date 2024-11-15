@@ -95,7 +95,7 @@ class ActionAfficherListeSpectacles extends Action
                             foreach ($medias as $media) {
                                 $Ext = new \SplFileInfo($media['fichier']);
                                 if ($Ext->getExtension() == 'jpg') {
-                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'></br></br>";
+                                    $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image' width='100%'></br></br>";
                                 } else {
                                     $html .= "<video height=350px autoplay muted loop>
                     <source src='" . htmlspecialchars($media['fichier']) . "' type='video/mp4'>

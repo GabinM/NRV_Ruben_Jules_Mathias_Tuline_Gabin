@@ -85,7 +85,6 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-<<<<<<< HEAD
     justify-content: center;
 
 }
@@ -149,22 +148,6 @@ h1 {
     margin-top:10%;
     color:black;
     padding: 2%;
-=======
-    justify-content: flex-start;
-    background: rgba(255, 255, 255, 0.9);
-    overflow-y: auto;
-    border-radius: 10px;
-}
-
-#soiree {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    color: black;
-    margin: 1rem 0;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
->>>>>>> 8880f2729296d9fecc16a1c4befbbbcd1e1a2481
 }
 
 #soiree-title {
@@ -174,7 +157,6 @@ h1 {
     color: black;
 }
 
-<<<<<<< HEAD
 #filter{
     color:black;
     position:relative;
@@ -187,21 +169,8 @@ h1 {
     margin-top:10%;
     margin-bottom: 10%;
     background-color:rgba(255,255,255, 0.7);
-=======
-#filter {
-    background-color: rgba(255, 255, 255, 0.7);
-    color: black;
-    width: 70%;
-    min-width: 400px;
-    padding: 1rem;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 0;
+
 }
->>>>>>> 8880f2729296d9fecc16a1c4befbbbcd1e1a2481
 
 .flex-center {
     display: flex;
