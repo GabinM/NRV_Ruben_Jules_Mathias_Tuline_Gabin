@@ -100,10 +100,10 @@ class ActionCreerSpectacle extends Action {
                     $html .= "Le Spectacle <b>$titre</b> a été créé avec succès au lieu $nLieu</br></br>";
                     $html .= "<a href='?action=ajouter-fichier&idSpec=$spec'>Ajouter des fichiers au spectacle</a>";
                 } else {
-                    $html = "<p>Erreur lors de la création du spectacle</p>";
+                    $html .= "<p>Erreur lors de la création du spectacle</p>";
                 }
             } else {
-                $html = "<p>Erreur : un ou plusieurs champs sont invalides.</p>";
+                $html .= "<p>Erreur : un ou plusieurs champs sont invalides.</p>";
             }
         }
         $html .= "</br><a href='?action=default'>Retourner au menu</a></div>";
