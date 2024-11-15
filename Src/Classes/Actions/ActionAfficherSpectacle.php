@@ -44,11 +44,8 @@ class ActionAfficherSpectacle extends Action {
 
                     if (!empty($medias)) {
                         if ($Ext == 'jpg') {
-                            foreach ($medias as $media) {
                                 $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br>";
-                            }
                         } else {
-                            foreach ($medias as $media) {
                                 $Ext = new \SplFileInfo($media['fichier']);
                                 if ($Ext->getExtension() == 'jpg') {
                                     $html .= "<img src='" . htmlspecialchars($media['fichier']) . "' alt='Media Image'><br></br>";
@@ -57,7 +54,6 @@ class ActionAfficherSpectacle extends Action {
                     <source src='" . htmlspecialchars($media['fichier']) . "' type='video/mp4'>
                   </video><br></br>";
                                 }
-                            }
 
                         }
                     }
