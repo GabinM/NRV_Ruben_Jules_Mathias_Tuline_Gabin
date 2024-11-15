@@ -28,6 +28,7 @@ class ActionCreerSpectacle extends Action {
             }
 
             $html = <<<HTML
+                <div id='filter'>
                 <h2>Création d'un nouveau spectacle</h2>
                 <form method="post" action="?action=create-spectacle">
                     <label>Nom du lieu où se produit le spectacle :

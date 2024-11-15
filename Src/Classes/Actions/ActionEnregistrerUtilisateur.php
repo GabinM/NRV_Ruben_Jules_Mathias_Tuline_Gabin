@@ -18,6 +18,7 @@ class ActionEnregistrerUtilisateur extends Action {
         if(! \nrv\Auth\Authz::checkRole() == 2){
             return new \nrv\Exceptions\AuthzException("Vous n'êtes pas autorisé à enregistrer un nouvel utilisateur");
         } else {
+            $html .= "<div id='filter'>";
             $html = "<form method='POST' action='?action=register-user'>";
             $html .="<label >Adresse mail :</label></br>";
             $html .= "<input type='text' name='mail'></br></br>";
@@ -25,7 +26,7 @@ class ActionEnregistrerUtilisateur extends Action {
             $html .= "<input type='text' name='mdp'></br></br>";
             $html .="<label >Veuillez entre le mot de passe à nouveau</label></br>";
             $html .= "<input type='text' name='mdp2'></br></br>";
-            $html .= "<input type='submit' value = 'Enregistrer cet utilisateur'>";
+            $html .= "<input type='submit' value = 'Enregistrer cet utilisateur'></div>";
 
             if($this->http_method == "POST"){
 

@@ -7,6 +7,7 @@ use PDO;
 class ActionAnnulerSpectacle extends Action {
     public function execute() : string {
         $html = "";
+        $html .= "<div id='filter'>";
         if( ! isset($_REQUEST['id_spectacle'])){
             $html .= "<a>Aucun spectacle n'a été indiqué</a>";
         } else {
@@ -25,7 +26,7 @@ class ActionAnnulerSpectacle extends Action {
             $query->bindParam(1,$_REQUEST['id_spectacle']);
             $query->execute();
         }
-        $html .= "</br><a href='?action=default'>Retourner au menu</a>";
+        $html .= "</br><a href='?action=default'>Retourner au menu</a></div>";
         return $html;
     }
     

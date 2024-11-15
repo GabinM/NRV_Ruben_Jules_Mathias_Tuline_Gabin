@@ -48,6 +48,7 @@ class ActionModifierSpectacle extends Action
             $description = htmlspecialchars($spectacle['descriptionSpec']);
 
             $html = <<<HTML
+            <div id='filter'>
                 <h2>Modification du spectacle</h2>
                 <form method="post" action="?action=modify-spectacle">
                     <input type="hidden" name="id_spectacle" value="$idSpectacle">
@@ -89,7 +90,8 @@ class ActionModifierSpectacle extends Action
 
                     <button type="submit">Modifier le spectacle</button>
                 </form>
-            HTML;
+            </div>
+        HTML;
 
         } else {
             $idLieu = filter_var($_POST['idLieu'], FILTER_SANITIZE_NUMBER_INT);

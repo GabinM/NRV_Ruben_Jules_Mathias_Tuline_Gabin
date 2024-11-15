@@ -13,6 +13,7 @@ class ActionAfficherSpectacle extends Action {
             if(sizeof($arr) < 1){
                 return "<a>Aucun spectacle trouvé</a>";
             }
+            $html .= "<div id='soiree'><div class='yellowBar'><a id='soiree-title'>{$arr['titre']}</a></div><div class='soiree-content'>";
             if($arr['annule'] == 1){
                 $html .= "<a>Ce spectacle a été annulé</a></br>";
             }
@@ -105,7 +106,7 @@ class ActionAfficherSpectacle extends Action {
             $html = "<a>Aucun ID de spectacle spécifié.</a>";
         }
         
-        $html .= "</br><a href='?action=default'>Retourner au menu</a><br><br><br>";
+        $html .= "</div></br><a href='?action=default'>Retourner au menu</a><br><br><br>";
 
 
         return $html;

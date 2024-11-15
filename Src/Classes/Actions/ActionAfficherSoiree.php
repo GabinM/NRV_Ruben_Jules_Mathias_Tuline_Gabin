@@ -13,6 +13,7 @@ class ActionAfficherSoiree extends Action {
             if(sizeof($arr) < 1){
                 return "<a>Aucune soirée n'a été trouvée</a>";
             }
+            $html .= "<div id='soiree'><div class='yellowBar'><a id='soiree-title'>{$arr['nomSoiree']}</a></div><div class='soiree-content'>";
             $html .= "<a><strong>Nom de la soirée :</strong> {$arr['nomSoiree']}</a></br>";
             $html .= "<a><strong>Thème :</strong> {$arr['theme']}</a></br>";
             $html .= "<a><strong>Date :</strong> {$arr['date']}</a></br>";
@@ -52,7 +53,7 @@ class ActionAfficherSoiree extends Action {
             }
         }
 
-        $html .= "</br><a href='?action=default'>Retourner au menu</a><br><br><br>";
+        $html .= "</div></br><a href='?action=default'>Retourner au menu</a><br><br><br>";
 
         return $html;
 

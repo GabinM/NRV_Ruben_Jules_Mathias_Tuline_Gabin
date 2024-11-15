@@ -9,6 +9,7 @@ class ActionCreerSoiree extends Action {
     public function execute(): string {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $html = <<<HTML
+            <div id='filter'>
 <h2>Création d'une nouvelle soirée</h2>
 <form method="post" action="?action=create-soiree">
     <label>Nom de la soirée :
@@ -32,7 +33,7 @@ class ActionCreerSoiree extends Action {
     </label><br><br>
 
     <button type="submit">Créer la soirée</button>
-</form>
+</form></div>
 HTML;
 
         } else {

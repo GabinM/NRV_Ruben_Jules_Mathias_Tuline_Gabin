@@ -11,16 +11,15 @@ class ActionAfficherListeSoirees extends Action
 
         $dateFilter = isset($_GET['date']) ? $_GET['date'] : '';
 
-
-
         $html .= "
-<form method='GET' action='index.php'> 
-    <input type='hidden' name='action' value='display-all-soiree' /> 
-    <label for='date'>Sélectionnez une date:</label>
-    <input type='date' id='date' name='date' value='$dateFilter'>
-    <input type='submit' value='Filtrer'>
-</form><br><br>
-";
+            <div id='filter'>
+            <form method='GET' action='index.php'> 
+                <input type='hidden' name='action' value='display-all-soiree' /> 
+                <label for='date'>Sélectionnez une date:</label>
+                <input type='date' id='date' name='date' value='$dateFilter'>
+                <input type='submit' value='Filtrer'>
+            </form></div><br><br>
+            ";
 
 
 
@@ -35,9 +34,11 @@ class ActionAfficherListeSoirees extends Action
                 $html .= "<a>Aucune soirée n'a été trouvée pour cette date.</a></br></br>";
             } else {
                 foreach ($arr as $soiree) {
+                    $html .= "<div id='soiree'><div class='yellowBar'><a id='soiree-title'>{$soiree['nomSoiree']}</a></div><div class='soiree-content'>";
                     $html .= "<a>La soirée {$soiree['nomSoiree']} a pour thème {$soiree['theme']} et aura lieu le {$soiree['date']}.</a><br>";
                     $html .= "<a>Le prix d'une place est de {$soiree['tarif']}€ par personne.</a><br>";
                     $html .= "<a>Description de la soirée : {$soiree['descriptionSoiree']}</a><br><br>";
+                    $html .= "</div></div>";
                 }
             }
         } else {
@@ -48,10 +49,12 @@ class ActionAfficherListeSoirees extends Action
                 $html .= "<a>Aucune soirée n'a été trouvée.</a>";
             } else {
                 foreach ($arr as $soiree) {
+                    $html .= "<div id='soiree'><div class='yellowBar'><a id='soiree-title'>{$soiree['nomSoiree']}</a></div><div class='soiree-content'>";
                     $html .= "<a>La soirée {$soiree['nomSoiree']} a pour thème {$soiree['theme']} et aura lieu le {$soiree['date']}.</a><br>";
                     $html .= "<a>Le prix d'une place est de {$soiree['tarif']}€ par personne.</a><br>";
                     $html .= "<a>Description de la soirée : {$soiree['descriptionSoiree']}</a><br>";
                     $html .= "<a href='?action=display-soiree&soiree_id={$soiree['idSoiree']}'> Afficher une soirée </a></br></br>";
+                    $html .= "</div></div>";
                 }
             }
         }

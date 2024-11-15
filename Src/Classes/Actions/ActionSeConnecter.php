@@ -13,13 +13,13 @@ class ActionSeConnecter extends Action{
         $html = "";
 
         if($_SERVER['REQUEST_METHOD'] == "GET"){
-            $html .= "<form method = 'POST' action ='?action=sign-in'></br>";
+            $html .= "<div id='filter'><form method = 'POST' action ='?action=sign-in'></br>";
             $html .= "<label for='email'>Email :</label></br>";
             $html .= "<input type='text' id='email' name='email'></br></br>";
             $html .="<label for='mdp'>Mot de passe :</label></br>";
             $html .= "<input type='text' id='mdp' name='mdp'></br></br>";
             $html .= "<button type = 'submit'>se connecter</button></form></br>";
-            $html .= "</br></br><a href='?action=default'> Retourner au menu </a>";
+            $html .= "</br></br><a href='?action=default'> Retourner au menu </a></div>";
         } else {
             try{
                 \nrv\Auth\AuthProvider::signin($_POST['email'], $_POST['mdp']);

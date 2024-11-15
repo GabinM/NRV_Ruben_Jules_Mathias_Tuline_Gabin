@@ -22,7 +22,7 @@ class Dispatcher{
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>NRV</title>
-            <link rel="stylesheet" href="nrvStyle.css">
+            <link rel="stylesheet" href="nrvStyle.css?v=<?php echo time(); ?>">
             <link rel="icon" href="Media/site/icon.ico" type="image/ico">
         </head>
         <body><div id="menuBar">';
@@ -49,17 +49,18 @@ class Dispatcher{
 
         $role = \nrv\auth\Authz::checkRole();
         if ($role>0) {
-            $html.= "<select id = adminList> onchange ='location = this.value' ";
-            $html .= "<option href='?action=link-spectacle-soiree'> Lier un spectacle à une soirée </option>";
-            $html .= "<option href='?action=create-spectacle'> Créer un spectacle </option>";
-            $html .= "<option href='?action=create-soiree'> Créer une soirée </option>";
+            $html.= "<select id = 'adminList' onchange ='location = this.value' >";
+            $html .= "<option value='' selected disabled hidden> Administrez vos spectacles </option>";
+            $html .= "<option value='?action=link-spectacle-soiree'> Lier un spectacle à une soirée </option>";
+            $html .= "<option value='?action=create-spectacle'> Créer un spectacle </option>";
+            $html .= "<option value='?action=create-soiree'> Créer une soirée </option>";
             if ($role == 2){
-                $html .= "<option href='?action=register-user'> Enregistrer un nouvel utilisateur </option>";
+                $html .= "<option value='?action=register-user'> Enregistrer un nouvel utilisateur </option>";
             }
             $html.= "</select>";
         }
 
-        $html .= "</div><div id='content'";
+        $html .= "</div><div id='bg'></div><div id='content'>";
         
         switch($this->action){
             case "default":

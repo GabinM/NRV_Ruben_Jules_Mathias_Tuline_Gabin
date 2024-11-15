@@ -18,6 +18,7 @@ class ActionAfficherListeSpectacles extends Action
         $html .= "
 <div style='display: flex;'>
     <div style='flex: 1; max-width: 300px;'>
+        <div id='filter'>
         <form method='GET' action='index.php'>
             <input type='hidden' name='action' value='display-all-spec' />
             <label for='date'>Sélectionnez une date:</label>
@@ -54,7 +55,7 @@ class ActionAfficherListeSpectacles extends Action
         $html .= "    </select>
             <input type='submit' value='Filtrer'>
         </form><br><br>
-    </div>
+    </div></div>
     <div style='flex: 3;'>
 ";
         $html .= "</div></div></br><a href='?action=default'> Retourner au menu </a><br><br><br>";
@@ -78,6 +79,7 @@ class ActionAfficherListeSpectacles extends Action
             foreach ($arr as $spectacle) {
                 //$idStyle = $spectacle['idStyle'] ?? 'Inconnu';
                 //$libelle = $bd->findStyleById($idStyle)['libelle'] ?? 'Inconnu';
+                $html .= "<div id='soiree'><div class='yellowBar'><a id='soiree-title'>{$spectacle['titre']}</a></div><div class='soiree-content'>";
                 $html .= "<a>Le spectacle nommé {$spectacle['titre']} se déroulera le {$spectacle['date']} à {$spectacle['horaire']}.</a></br>";
 
                 $medias = $bd->findMediaBySpec($spectacle['idSpectacle']);
@@ -104,7 +106,7 @@ class ActionAfficherListeSpectacles extends Action
                         }
                     }
                 }
-                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Voir le détail du spectacle.</a></br></br>";
+                $html .= "<a href='?action=display-spectacle&id_spectacle={$spectacle['idSpectacle']}'>Voir le détail du spectacle.</a></br></br></div></div>";
             }
 
         }

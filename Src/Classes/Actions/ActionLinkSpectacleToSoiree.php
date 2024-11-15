@@ -13,7 +13,7 @@ class ActionLinkSpectacleToSoiree extends Action {
         if( \nrv\Auth\Authz::checkRole() == 0){
             return new \nrv\Exceptions\AuthzException("Vous n'êtes pas autorisé à effectuer cette action");
         } else {
-            $html = "";
+            $html = "<div id='filter'>";
             
             $html .= "<form method='POST' action='?action=link-spectacle-soiree'>";
             $html .="<label >Nom de la soirée</label></br>";
