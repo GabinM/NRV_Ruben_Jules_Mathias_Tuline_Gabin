@@ -15,7 +15,7 @@ class ActionAfficherSpectacle extends Action {
             }
             $html .= "<div id='soiree'><div class='yellowBar'><a id='soiree-title'>{$arr['titre']}</a></div><div class='soiree-content'>";
             if($arr['annule'] == 1){
-                $html .= "<a>Ce spectacle a été annulé</a></br>";
+                $html .= "</br><a id='red'><b>Ce spectacle a été annulé</b></a></br></br>";
             }
             $html .= "<a><strong>Titre :</strong> {$arr['titre']}</a><br>";
             //$html .= "<a><strong>Lieu :</strong> {$arr['nomLieu']}</a><br>";

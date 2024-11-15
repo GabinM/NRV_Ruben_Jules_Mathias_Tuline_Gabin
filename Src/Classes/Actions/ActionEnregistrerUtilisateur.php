@@ -29,13 +29,13 @@ class ActionEnregistrerUtilisateur extends Action {
             $html .= "<input type='submit' value = 'Enregistrer cet utilisateur'></div>";
 
             if($this->http_method == "POST"){
-
+                $html .= "<div id='filter'>";
                 if(! isset($_POST['mdp']) || ! isset($_POST['mdp2'])){
                     $html.= "<a>veuillez entrer un mot de passe</a></br>";
                 } elseif (!isset($_POST['mail'])){
                     $html.= "<a>veuillez entrer une adresse mail</a></br>";
                 } elseif ($_POST['mdp'] != $_POST['mdp2']){
-                    $html.= "<a>veuillez entrer une adresse mail</a></br>";
+                    $html.= "<a>veuillez entrer le même mot de passe</a></br>";
                 } elseif (strlen($_POST['mdp']) < 10){
                     $html.= "<a>mot de passe trop faible</a></br>";
                 } else {
@@ -51,11 +51,12 @@ class ActionEnregistrerUtilisateur extends Action {
                         $hashmdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
                         $query->bindParam(2,$hashmdp);
                         $query->execute();
-
                         $html .= "<a>Utilisateur enregistré avec succès</a>";
+                        
                     }
                     
                 }
+                $html .= "</div>";
             }
         }
         return $html;

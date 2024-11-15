@@ -25,12 +25,12 @@ class ActionAjouterFichier extends Action {
             unset($_FILES['fichier']);
         }
 
-        $html = "<form method='post' action='?action=ajouter-fichier&idSpec={$id_spectacle}' enctype='multipart/form-data'>
+        $html = "<div id='filter'><form method='post' action='?action=ajouter-fichier&idSpec={$id_spectacle}' enctype='multipart/form-data'>
                          <input type='file' name='fichier' /></br>
                          <input type='submit' value='Envoyer' />
                  </form>";
 
-        $html .= "</br><a href='?action=default'>Retourner au menu</a>";
+        $html .= "</br><a href='?action=default'>Retourner au menu</a></div>";
         return $html;
     }
 }

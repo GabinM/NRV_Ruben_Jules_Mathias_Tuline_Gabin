@@ -21,6 +21,7 @@ class ActionSeConnecter extends Action{
             $html .= "<button type = 'submit'>se connecter</button></form></br>";
             $html .= "</br></br><a href='?action=default'> Retourner au menu </a></div>";
         } else {
+            $html .= "<div id='filter'>";
             try{
                 \nrv\Auth\AuthProvider::signin($_POST['email'], $_POST['mdp']);
                 $_SESSION['user']['email'] = $_POST['email'];
@@ -32,7 +33,7 @@ class ActionSeConnecter extends Action{
                 $html .= "<a>email ou mot de passe incorrect</a>";
                 $html .= "</br></br><a class='adminc{$bool}' id='choice' href='?action=sign-in'>Réessayer</a>";
             }
-            $html .= "</br></br><a href='?action=default'> Retourner au menu </a>";
+            $html .= "</br></br><a href='?action=default'> Retourner au menu </a></div>";
 
         }
 

@@ -78,6 +78,10 @@ h1 {
     z-index: -1;
 }
 
+#red{
+    color:red;
+}
+
 #content {
     position: relative;
     width: 75%;

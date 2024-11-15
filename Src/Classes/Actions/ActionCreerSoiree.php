@@ -43,19 +43,22 @@ HTML;
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
             $tarif = filter_var($_POST['tarif'], FILTER_VALIDATE_FLOAT);
 
+            $html = "<div id='filter'>";
+
             if ($nom && $theme && $date && $description && $tarif !== false) {
                 $bd = NRVRepository::getInstance();
                 $result = $bd->createSoiree($nom, $theme, $date, $description, $tarif);
 
                 if ($result) {
-                    $html = "La soirée <b>$nom</b> a été créée";
+                    $html .= "La soirée <b>$nom</b> a été créée";
                 } else {
-                    $html = "<p>Erreur</p>";
+                    $html .= "<p>Erreur</p>";
                 }
             } else {
-                $html = "<p>Erreur</p>";
+                $html .= "<p>Erreur</p>";
             }
         }
+        $html .= "</br></div>";
 
         return $html;
     }

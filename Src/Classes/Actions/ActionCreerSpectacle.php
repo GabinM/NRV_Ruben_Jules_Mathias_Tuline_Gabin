@@ -4,6 +4,8 @@ namespace nrv\Actions;
 
 use nrv\Repository\NRVRepository;
 
+use PDO;
+
 class ActionCreerSpectacle extends Action {
 
     public function execute(): string {
@@ -74,6 +76,11 @@ class ActionCreerSpectacle extends Action {
         } else {
 
             $idLieu = filter_var($_POST['idLieu'], FILTER_SANITIZE_NUMBER_INT);
+            $bd = \nrv\Repository\NRVRepository::getInstance()->getDb();
+            $query = $bd->prepare("select nomLieu from lieu where idLieu = ? ;");
+            $query->bindParam(1,$idLieu);
+            $query->execute();
+            $nLieu = $query->fetch(PDO::FETCH_ASSOC)['nomLieu'];
             $titre = filter_var($_POST['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
             $artiste = filter_var($_POST['artiste'], FILTER_SANITIZE_SPECIAL_CHARS);
             $idstyle = filter_var($_POST['idstyle'], FILTER_SANITIZE_NUMBER_INT);
@@ -81,7 +88,7 @@ class ActionCreerSpectacle extends Action {
             $horaire = filter_var($_POST['horraire'], FILTER_SANITIZE_NUMBER_INT);
             $duree = filter_var($_POST['duree'], FILTER_SANITIZE_NUMBER_INT);
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
-
+            $html = "<div id='filter'>";
             if ($idLieu && $titre && $artiste && $idstyle && $date && $horaire && $duree && $description !== false) {
                 $bd = NRVRepository::getInstance();
                 $result = $bd->createSpectacle($idLieu, $titre, $idstyle, $date, $duree, $description, $horaire, $artiste);
@@ -89,7 +96,8 @@ class ActionCreerSpectacle extends Action {
                 $spec = $id_spectacle['max(idSpectacle)'];
 
                 if ($result) {
-                    $html = "Le Spectacle <b>$titre</b> a été créé avec succès au lieu $idLieu</br></br>";
+                    
+                    $html .= "Le Spectacle <b>$titre</b> a été créé avec succès au lieu $nLieu</br></br>";
                     $html .= "<a href='?action=ajouter-fichier&idSpec=$spec'>Ajouter des fichiers au spectacle</a>";
                 } else {
                     $html = "<p>Erreur lors de la création du spectacle</p>";
@@ -98,7 +106,7 @@ class ActionCreerSpectacle extends Action {
                 $html = "<p>Erreur : un ou plusieurs champs sont invalides.</p>";
             }
         }
-        $html .= "</br><a href='?action=default'>Retourner au menu</a>";
+        $html .= "</br><a href='?action=default'>Retourner au menu</a></div>";
         return $html;
     }
 }

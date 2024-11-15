@@ -105,20 +105,20 @@ class ActionModifierSpectacle extends Action
             $duree = is_numeric($duree) ? (int)$duree : 0;
 
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
-
+            $html = "<div id='filter'>";
             if ($idLieu && $titre && $artiste && $idStyle && $date && $horaire && $duree !== false && $description !== false) {
                 $result = $bd->updateSpectacle($idSpectacle, $idLieu, $titre, $idStyle, $date, $duree, $description, $horaire, $artiste, 0);
                 if ($result) {
-                    $html = "Le Spectacle <b>$titre</b> a été modifié.";
+                    $html .= "Le Spectacle <b>$titre</b> a été modifié.";
                 } else {
-                    $html = "<p>Erreur lors de la modification du spectacle</p>";
+                    $html .= "<p>Erreur lors de la modification du spectacle</p>";
                 }
             } else {
-                $html = "<p>Erreur : un ou plusieurs champs sont invalides.</p>";
+                $html .= "<p>Erreur : un ou plusieurs champs sont invalides.</p>";
             }
         }
 
-        $html .= "</br><a href='?action=default'>Retourner au menu</a>";
+        $html .= "</br><a href='?action=default'>Retourner au menu</a></div>";
         return $html;
     }
 
