@@ -208,5 +208,18 @@ class   NRVRepository
         return $query->execute();
     }
 
+    public function recupererDernierSpectacle(){
+        $query = $this->bd->prepare("SELECT max(idSpectacle) FROM spectacle;");
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function ajouterMedia($idSpectacle,$lien) {
+        $query = $this->bd->prepare("INSERT INTO media (idSpectacle, fichier) VALUES (?,?)");
+        $query->bindParam(1,$idSpectacle);
+        $query->bindParam(2,$lien);
+        $query->execute();
+    }
+
 
 }
