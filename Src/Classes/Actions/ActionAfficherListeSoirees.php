@@ -12,13 +12,14 @@ class ActionAfficherListeSoirees extends Action
         $dateFilter = isset($_GET['date']) ? $_GET['date'] : '';
 
         $html .= "
+            <div id='filter2'>
             <div id='filter'>
             <form method='GET' action='index.php'> 
                 <input type='hidden' name='action' value='display-all-soiree' /> 
                 <label for='date'>Sélectionnez une date:</label>
                 <input type='date' id='date' name='date' value='$dateFilter'>
                 <input type='submit' value='Filtrer'>
-            </form></div><br><br>
+            </form></div></div><br><br>
             ";
 
 

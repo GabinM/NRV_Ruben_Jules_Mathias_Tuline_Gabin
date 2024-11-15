@@ -17,7 +17,7 @@ class ActionAfficherListeSpectacles extends Action
 
         $html .= "
 <div style='display: flex;'>
-    <div style='flex: 1; max-width: 300px;'>
+    <div id='filter2' style='flex: 1; max-width: 300px;'>
         <div id='filter'>
         <form method='GET' action='index.php'>
             <input type='hidden' name='action' value='display-all-spec' />
@@ -55,10 +55,12 @@ class ActionAfficherListeSpectacles extends Action
         $html .= "    </select>
             <input type='submit' value='Filtrer'>
         </form><br><br>
+        <a href='?action=default'> Retourner au menu </a><br><br><br>
     </div></div>
+    
     <div style='flex: 3;'>
 ";
-        $html .= "</div></div></br><a href='?action=default'> Retourner au menu </a><br><br><br>";
+        $html .= "</div></div></br>";
 
 
         if ($dateFilter && $styleFilter && $lieuFilter) {
