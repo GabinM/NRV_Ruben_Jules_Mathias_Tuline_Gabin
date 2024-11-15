@@ -84,10 +84,13 @@ class ActionCreerSpectacle extends Action {
 
             if ($idLieu && $titre && $artiste && $idstyle && $date && $horaire && $duree && $description !== false) {
                 $bd = NRVRepository::getInstance();
-                $result = $bd->createSpectacle($idLieu, $titre, $idstyle, $date, $horaire, $duree, $description, $artiste);
+                $result = $bd->createSpectacle($idLieu, $titre, $idstyle, $date, $duree, $description, $horaire, $artiste);
+                $id_spectacle = $bd->recupererDernierSpectacle();
+                $spec = $id_spectacle['max(idSpectacle)'];
 
                 if ($result) {
-                    $html = "Le Spectacle <b>$titre</b> a été créé avec succès au lieu $idLieu";
+                    $html = "Le Spectacle <b>$titre</b> a été créé avec succès au lieu $idLieu</br></br>";
+                    $html .= "<a href='?action=ajouter-fichier&idSpec=$spec'>Ajouter des fichiers au spectacle</a>";
                 } else {
                     $html = "<p>Erreur lors de la création du spectacle</p>";
                 }

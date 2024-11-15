@@ -115,6 +115,10 @@ class Dispatcher{
                 $act = new \nrv\Actions\ActionAnnulerSpectacle();
                 $html .= $act->execute();
                 break;
+            case "ajouter-fichier":
+                $act = new \nrv\Actions\ActionAjouterFichier();
+                $html .= $act->execute();
+                break;
             default:
                 $html .= '<a>Erreur sur la requête</a>';
                 break;
