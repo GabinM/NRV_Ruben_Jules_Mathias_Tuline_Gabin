@@ -102,7 +102,7 @@ class   NRVRepository
 
     public function findMediaBySpectacle(int $id)
     {
-        $query = $this->bd->prepare("select * from media inner join spectacle on spectacle.idSpectacle =  media.idSpectacle where spectacle.idSpectacle = ? ;");
+        $query = $this->bd->prepare("select distinct * from media inner join spectacle on spectacle.idSpectacle =  media.idSpectacle where spectacle.idSpectacle = ? ;");
         $query->bindParam(1, $id);
         $query->execute();
 
@@ -186,7 +186,7 @@ class   NRVRepository
     }
 
     public function findMediaBySpec($id) {
-        $query = $this->bd->prepare("SELECT fichier FROM media WHERE idSpectacle = :id");
+        $query = $this->bd->prepare("SELECT distinct fichier FROM media WHERE idSpectacle = :id");
         $query->bindParam(':id',$id);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
